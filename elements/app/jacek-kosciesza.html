@@ -1,0 +1,22 @@
+<link rel="import" async href="../blog/jk-blog.html">
+
+<template id="jacek-kosciesza-tmpl">
+    <style>
+        :host {
+            background-color: seagreen;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+    <jk-blog></jk-blog>
+    <aside>
+        <figure itemscope itemtype="http://schema.org/Person">
+            <img src="./images/jacek-kosciesza.jpg" alt="Jacek Kościesza" itemprop="image">
+            <figcaption itemprop="name">Jacek Kościesza</figcaption>
+        </figure>
+    </aside>
+</template>
+
+<script src="jacek-kosciesza.js"></script> <!-- TODO: should this be async? -->
