@@ -1,15 +1,21 @@
 <template id="jk-blog-tmpl">
     <style>
         :host {
-            background-color: cornflowerblue;
             display: block;
             width: 200px;
             height: 200px;
+            --color: cornflowerblue;
+            background-color: var(--color); 
+        }
+
+        p {
+            margin-top: 0;
         }
     </style>
 
     <main itemscope itemtype="http://schema.org/Blog">
         <p>Hello, I'm Jacek Kościesza and this is my blog.</p>
+        <button id="play">Play</button>
     </main>
 </template>
 

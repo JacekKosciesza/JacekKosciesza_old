@@ -8,16 +8,3 @@ html, body {
 body {
     background-color: white;
 }
-
-aside {
-    float: right;
-}
-
-figure {
-    text-align: center;
-}
-
-img {
-    border: 1px solid grey;
-    padding: 5px;
-}
