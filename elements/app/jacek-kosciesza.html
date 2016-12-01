@@ -3,12 +3,30 @@
 <template id="jacek-kosciesza-tmpl">
     <style>
         :host {
-            background-color: seagreen;
+            /*background-color: seagreen;*/
+            /* http://lea.verou.me/css3patterns/#carbon */
+            background:
+                linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+                linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+                linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+                linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+                linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+                linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+            background-color: #131313;
+            background-size: 20px 20px;
+
             display: block;
             width: 100%;
             height: 100%;
+            --header-color: cornflowerblue;
         }
         
+        header {
+            height: 64px;
+            width: 100%;
+            background-color: var(--header-color);
+        }
+
         aside {
             float: right;
         }
@@ -29,6 +47,14 @@
         }
     </style>
 
+    <header>
+        <button style="width:24px;height:24px;padding:0;">
+            <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block; width: 100%; height: 100%;">
+                <g id="menu"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></g>
+                <!--<g id="close"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g>-->
+            </svg>
+        </button>
+    </header>
     <nav>
         <ul>
             <li><a href="/">Blog</a></li>

@@ -14,24 +14,29 @@ customElements.define('jk-blog', class extends HTMLElement {
         const tmpl = doc.querySelector('#jk-blog-tmpl');
         this._root = this.attachShadow({mode: 'open'});
         this._root.appendChild(tmpl.content.cloneNode(true));
-
-        this._playButton = this._root.querySelector('#play'); 
     }
 
     connectedCallback() {
-      this.addEventListeners();
+        this._playButton = this._root.querySelector('#play');
+        this._textToSpeak = this._root.querySelector('#text');
+
+        this.addEventListeners();
     }
 
     disconnectedCallback() {
-      this.removeEventListeners();
+        this.removeEventListeners();
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
 
     }
 
-    addEventListeners() {
+    addEventListeners() {        
+        this.onPlayButtonClicked = this.onPlayButtonClicked.bind(this);
+
+        //this._playButton.addEventListener('click', _ => this.onPlayButtonClicked());
         this._playButton.addEventListener('click', this.onPlayButtonClicked);
+        
     }
 
     removeEventListeners() {
@@ -40,6 +45,8 @@ customElements.define('jk-blog', class extends HTMLElement {
 
     onPlayButtonClicked() {
         console.log('Play button clicked');
+        var synth = window.speechSynthesis;
+        var utterThis = new SpeechSynthesisUtterance(this._textToSpeak.innerText);
+        synth.speak(utterThis);
     }
 });
-

@@ -16,8 +16,10 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
         this._root.appendChild(tmpl.content.cloneNode(true));
     }
 
-    connectedCallback() {
-
+    async connectedCallback() {
+        // console.log('1');
+        // await new Promise(y => setTimeout(y, 2000));
+        // console.log('Hello async/await!');
     }
 
     disconnectedCallback() {
