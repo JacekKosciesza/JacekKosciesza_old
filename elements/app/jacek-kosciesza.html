@@ -32,7 +32,10 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            padding: 0 16px;
+        }
+
+        button.show-hamburger-menu {
+            margin-left: 16px;
         }
 
         header.top svg {
@@ -98,6 +101,7 @@
             height: 100%;
             background: rgba(0,0,0,0.7);
             opacity: 0;
+            will-change: opacity;
             transition: opacity 0.3s cubic-bezier(0,0,0.3,1);
         }
 
@@ -112,6 +116,14 @@
             transition: transform 0.3s cubic-bezier(0,0,0.3,1);
             display: flex;
             flex-direction: column;
+        }
+
+        .side-nav--animatable .side-nav__container {
+            transition: transform 0.13s cubic-bezier(0,0,0.3,1);
+        }
+
+        .side-nav--visible.side-nav--animatable .side-nav__container {
+            transition: transform 0.33s cubic-bezier(0,0,0.3,1);
         }
 
          .side-nav--visible::before {
