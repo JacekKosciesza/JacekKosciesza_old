@@ -3,6 +3,7 @@
 <template id="jacek-kosciesza-tmpl">
     <style>
         :host {
+            font-family: Arial, sans-serif;
             /*background-color: seagreen;*/
             /* http://lea.verou.me/css3patterns/#carbon */
             background:
@@ -18,13 +19,32 @@
             display: block;
             width: 100%;
             height: 100%;
-            --header-color: cornflowerblue;
+            --header-background-color: cornflowerblue;
+            --header-color: white;
         }
-        
-        header {
+
+        header.top {
             height: 64px;
             width: 100%;
-            background-color: var(--header-color);
+            background-color: var(--header-background-color);
+            color: var(--header-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 16px;
+        }
+
+        header.top svg {
+            fill: var(--header-color);
+        }
+
+        button {
+            background: none;
+            border: none;
+            width:24px;
+            height:24px;
+            padding:0;
         }
 
         aside {
@@ -40,29 +60,135 @@
             padding: 5px;
         }
 
-        @media (max-width: 600px) {
+        /*@media (max-width: 600px) {
             aside {
                 display: none;
             }
+        }*/
+
+        /* Side Nav */
+        /* https://www.youtube.com/watch?v=e5CXg1sjTqQ */
+        button.hide-hamburger-menu {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+        }
+
+        .side-nav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .side-nav--visible {
+            pointer-events: auto;
+        }
+
+        .side-nav::before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            opacity: 0;
+            transition: opacity 0.3s cubic-bezier(0,0,0.3,1);
+        }
+
+        .side-nav__container {
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            background: #fff;
+            height: 100%;
+            box-shadow: 2px 0 12px rgba(0,0,0,0.4);
+            transform: translate(-102%);
+            transition: transform 0.3s cubic-bezier(0,0,0.3,1);
+            display: flex;
+            flex-direction: column;
+        }
+
+         .side-nav--visible::before {
+            opacity: 1;
+        }
+
+        .side-nav--visible .side-nav__container {
+            transform: none;
+        }
+
+        .side-nav__header {
+            height: 64px;
+            background-color: var(--header-background-color);
+            color: var(--header-color);
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 24px;
+        }
+
+        .side-nav__header svg {
+            fill: var(--header-color);
+        }
+
+        .side-nav__content {
+            flex: 1;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .side-nav__content li {
+            height: 32px;
+            line-height: 32px;
+            padding: 0 16px;
+        }
+
+        .side-nav__content li a {
+            text-decoration: none;
+        }
+
+        .side-nav__content li:hover {
+            background-color: #ccc;
         }
     </style>
 
-    <header>
-        <button style="width:24px;height:24px;padding:0;">
+    <header class="top">
+        <button class="show-hamburger-menu">
             <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block; width: 100%; height: 100%;">
                 <g id="menu"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></g>
-                <!--<g id="close"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g>-->
             </svg>
         </button>
     </header>
-    <nav>
-        <ul>
-            <li><a href="/">Blog</a></li>
-            <li><a href="/resoures">Resources</a></li>
-            <li><a href="/contact">Contact</a></li>
-        </ul>
-    </nav>
 
+    <aside class="side-nav">
+        <nav class="side-nav__container">
+            
+            <header class="side-nav__header">
+                <button class="hide-hamburger-menu">
+                    <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" style="pointer-events: none; display: block; width: 100%; height: 100%;">
+                        <g id="close"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g>
+                    </svg>
+                </button>
+                Side Nav                
+            </header>
+            <ul class="side-nav__content">
+                <li><a href="/">Blog</a></li>
+                <li><a href="/resoures">Resources</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!--
     <aside>
         <figure itemscope itemtype="http://schema.org/Person">
             <picture>
@@ -73,7 +199,7 @@
             <figcaption itemprop="name">Jacek Kościesza</figcaption>
         </figure>
     </aside>
-    <jk-blog></jk-blog>
+    <jk-blog></jk-blog>-->
 </template>
 
 <script src="jacek-kosciesza.js"></script> <!-- TODO: should this be async? -->
