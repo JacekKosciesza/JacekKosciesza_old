@@ -15,12 +15,30 @@
     <link rel="icon" href="favicon.ico">
 
     <link rel="stylesheet" async href="./styles/all.css">
-
     <link rel="import" async href="./elements/app/jacek-kosciesza.html">
+    <style>
+        .splash-screen {
+            background-color: #1B1B1B;
+            height: 100%;
+            width: 100%;
+            display: block;
+        }
+
+        .splash-screen header {
+            background-color: cornflowerblue;
+            height: 64px;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
-    <jacek-kosciesza itemscope itemtype="http://schema.org/WebApplication"></jacek-kosciesza> <!-- TODO: should microdata be here or inside web component? -->
+    <!-- TODO: should microdata be here or inside web component? -->
+    <jacek-kosciesza itemscope itemtype="http://schema.org/WebApplication">
+        <div class="splash-screen">
+            <header></header>
+        </div>
+    </jacek-kosciesza> 
 </body>
 
 </html>
