@@ -13,7 +13,6 @@
 
     <title>Blog &middot; Jacek Kościesza</title>
     <link rel="icon" href="favicon.ico">
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.23/webcomponents.min.js"></script>-->
     <link rel="stylesheet" async href="./styles/all.css">
     <link rel="import" async href="./elements/app/jacek-kosciesza.html">
     
@@ -29,6 +28,41 @@
             background-color: cornflowerblue;
             height: 64px;
             width: 100%;
+            position: relative;
+        }
+
+        .splash-screen header .progress {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            border-bottom: 2px solid red;
+            width: 0%;
+            animation:  width_animation 2s infinite;
+        }
+
+        /*TODO: use transform?*/
+        @keyframes width_animation { 
+            0%{width: 0%;}
+            5%{width: 5%;}
+            10%{width: 10%;}
+            15%{width: 15%;}
+            20%{width: 20%;}
+            25%{width: 25%;}
+            30%{width: 30%;}
+            35%{width: 35%;}
+            40%{width: 40%;}
+            45%{width: 45%;}
+            50%{width: 50%;}
+            55%{width: 55%;}
+            60%{width: 60%;}
+            65%{width: 65%;}
+            70%{width: 70%;}
+            75%{width: 75%;}
+            80%{width: 80%;}
+            85%{width: 85%;}
+            90%{width: 90%;}
+            95%{width: 95%;}
+            100%{width: 100%;}
         }
     </style>
 </head>
@@ -37,7 +71,9 @@
     <!-- TODO: should microdata be here or inside web component? -->
     <jacek-kosciesza itemscope itemtype="http://schema.org/WebApplication" log>
         <div class="splash-screen">
-            <header></header>
+            <header>
+                <div class="progress"></div>
+            </header>
         </div>
     </jacek-kosciesza> 
 </body>
