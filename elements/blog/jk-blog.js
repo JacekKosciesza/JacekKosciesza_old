@@ -20,6 +20,8 @@ customElements.define('jk-blog', class extends HTMLElement {
         this._playButton = this._root.querySelector('#play');
         this._textToSpeak = this._root.querySelector('#text');
 
+        this.getPosts();
+        
         this.addEventListeners();
     }
 
@@ -48,5 +50,16 @@ customElements.define('jk-blog', class extends HTMLElement {
         var synth = window.speechSynthesis;
         var utterThis = new SpeechSynthesisUtterance(this._textToSpeak.innerText);
         synth.speak(utterThis);
+    }
+
+    async getPosts() {
+        let response = await fetch('https://jacekkosciesza-659f4.firebaseio.com/posts.json');
+        let posts = await response.json();
+        posts.forEach((post) => {
+            let li = document.createElement('li');
+            li.innerText = post.title;
+            let ul = this._root.querySelector('#posts');
+            ul.appendChild(li);
+        });
     }
 });

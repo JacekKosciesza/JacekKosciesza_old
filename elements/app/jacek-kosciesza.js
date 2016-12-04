@@ -22,18 +22,13 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
         this._root = this.attachShadow({mode: 'open'});
         this._root.appendChild(tmpl.content.cloneNode(true));
         
-        this.sideNav = new SideNav(this._root);
-        this.cards = new Cards(this._root);
-    }
-
-    /*async*/ connectedCallback() {
-        // console.log('1');
-        // await new Promise(y => setTimeout(y, 2000));
-        // console.log('Hello async/await!');
+        // this.sideNav = new SideNav(this._root);
+        // this.cards = new Cards(this._root);
     }
 
     disconnectedCallback() {
-
+        //this.sideNav.removeEventListeners();
+        //this.cards.removeEventListeners();
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

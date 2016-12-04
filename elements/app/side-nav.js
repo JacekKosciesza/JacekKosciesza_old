@@ -25,12 +25,23 @@ class SideNav {
         this.sideNavEl.addEventListener('click', this.hideSideNav);
         this.sideNavContainer.addEventListener('click', this.blockClicks);
 
-        document.addEventListener('touchstart', this.onTouchStart);
-        document.addEventListener('touchmove', this.onTouchMove);
-        document.addEventListener('touchend', this.onTouchEnd);
+        // document.addEventListener('touchstart', this.onTouchStart);
+        // document.addEventListener('touchmove', this.onTouchMove);
+        // document.addEventListener('touchend', this.onTouchEnd);
     }
 
-    onTransitionEnd (event) {
+    removeEventListeners() {
+        this.showHamburgerMenuButton.removeEventListener('click', this.showSideNav);
+        this.hideHamburgerMenuButton.removeEventListener('click', this.hideSideNav);
+        this.sideNavEl.removeEventListener('click', this.hideSideNav);
+        this.sideNavContainer.removeEventListener('click', this.blockClicks);
+
+        document.removeEventListener('touchstart', this.onTouchStart);
+        document.removeEventListener('touchmove', this.onTouchMove);
+        document.removeEventListener('touchend', this.onTouchEnd);
+    }
+
+    onTransitionEnd (evt) {
         this.sideNavEl.classList.remove('side-nav--animatable');
         this.sideNavEl.removeEventListener('transitionend', this.onTransitionEnd);
     }
@@ -47,31 +58,31 @@ class SideNav {
         this.sideNavEl.addEventListener('transitionend', this.onTransitionEnd);
     }
 
-    blockClicks(event) {
-        event.stopPropagation();
+    blockClicks(evt) {
+        evt.stopPropagation();
     }
 
-    onTouchStart(event) {
+    onTouchStart(evt) {
         if (!this.sideNavEl.classList.contains('side-nav--visible')) {
             return;
         }
 
-        this.startX = event.touches[0].pageX;
+        this.startX = evt.touches[0].pageX;
         this.currentX = this.startX;
     }
 
-    onTouchMove(event) {
-        this.currentX = event.touches[0].pageX;
+    onTouchMove(evt) {
+        this.currentX = evt.touches[0].pageX;
         const translateX = Math.min(0, this.currentX - this.startX);
 
         // if (translateX < 0) {
-        //     event.preventDefault();
+        //     evt.prevtDefault();
         // }
 
         this.sideNavContainer.style.transform = `translateX(${translateX}px)`;
     }
 
-    onTouchEnd(event) {
+    onTouchEnd(evt) {
         const translateX = Math.min(0, this.currentX - this.startX);
         if (translateX < 0) {
             this.sideNavContainer.style.transform = '';
