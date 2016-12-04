@@ -1,4 +1,6 @@
 <link rel="import" href="../blog/jk-blog.html">
+<link rel="import" href="side-nav.html">
+<link rel="import" href="swipeable-cards.html">
 
 <template id="jacek-kosciesza-tmpl">
     <style>
@@ -23,17 +25,17 @@
             --header-color: white;
         }
 
-        ::selection {
-  background: #ffb7b7; /* WebKit/Blink Browsers */
-}
-::-moz-selection {
-  background: #ffb7b7; /* Gecko Browsers */
-}
+        ::selection, ::-moz-selection {
+            background: #ffb7b7; /* WebKit/Blink Browsers */
+        }
+        ::-moz-selection {
+            background: #ffb7b7; /* Gecko Browsers */
+        }
 
         header.top {
             height: 64px;
             width: 100%;
-            background-color: var(--header-background-color);
+            background: var(--header-background-color);
             color: var(--header-color);
             box-shadow: 0 2px 4px rgba(0,0,0,0.4);
             display: flex;
@@ -186,6 +188,25 @@
         .side-nav__content li:hover {
             background-color: #ccc;
         }
+
+        /*Swipeable Cards*/
+        .card-container {
+            width: 100%;
+            max-width: 450px;
+            padding: 16px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: #FFF;
+            border-radius: 3px;
+            box-shadow: 0 3px 4px rgba(0,0,0,0.3);
+            margin: 20px 0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
     </style>
 
     <header class="top">
@@ -194,7 +215,7 @@
                 <g id="menu"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></g>
             </svg>
         </button>
-        <button class="btn">Login</button>
+        <!--<button class="btn">Login</button>-->
     </header>
 
     <!--TODO: Side nav element-->
@@ -216,7 +237,7 @@
                         <g id="close"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></g>
                     </svg>
                 </button>
-                Side Nav                
+                JK's Blog                
             </header>
             <ul class="side-nav__content">
                 <li><a href="/">Blog</a></li>
@@ -238,9 +259,14 @@
         </figure>
     </aside>
     <jk-blog></jk-blog>-->
-    <main style="color: white;">
+    <!--<main style="color: white;">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita deleniti eligendi ullam rerum delectus, veniam. Molestiae nisi magnam voluptates ad quisquam. Ex accusamus deserunt, impedit ipsum, odio nihil blanditiis accusantium.
-    </main>
+    </main>-->
+    <div class="card-container">
+        <div class="card">Post 1</div>
+        <div class="card">Post 2</div>
+        <div class="card">Post 3</div>
+    </div>
 </template>
 
 <script src="jacek-kosciesza.js"></script> <!-- TODO: should this be async? -->
