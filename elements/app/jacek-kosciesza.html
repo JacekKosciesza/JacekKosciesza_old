@@ -1,9 +1,9 @@
-<link rel="import" async href="../blog/jk-blog.html">
+<link rel="import" href="../blog/jk-blog.html">
 
 <template id="jacek-kosciesza-tmpl">
     <style>
         :host {
-            font-family: Arial, sans-serif;
+            font-family: Roboto, Arial, sans-serif;
             /*background-color: seagreen;*/
             /* http://lea.verou.me/css3patterns/#carbon */
             background:
@@ -22,6 +22,13 @@
             --header-background-color: cornflowerblue;
             --header-color: white;
         }
+
+        ::selection {
+  background: #ffb7b7; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #ffb7b7; /* Gecko Browsers */
+}
 
         header.top {
             height: 64px;
@@ -48,6 +55,14 @@
             width:24px;
             height:24px;
             padding:0;
+            color: white;
+        }
+
+        button.btn {
+            border: 1px solid white;
+            border-radius: 10px;
+            width: auto;
+            padding: 0 10px;
         }
 
         aside {
@@ -179,6 +194,7 @@
                 <g id="menu"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></g>
             </svg>
         </button>
+        <button class="btn">Login</button>
     </header>
 
     <!--TODO: Side nav element-->
@@ -211,7 +227,7 @@
     </aside>
 
     
-    <aside>
+    <!--<aside>
         <figure itemscope itemtype="http://schema.org/Person">
             <picture>
                 <source srcset="./images/jacek-kosciesza.webp" type="image/webp">
@@ -221,7 +237,10 @@
             <figcaption itemprop="name">Jacek Kościesza</figcaption>
         </figure>
     </aside>
-    <jk-blog></jk-blog>
+    <jk-blog></jk-blog>-->
+    <main style="color: white;">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita deleniti eligendi ullam rerum delectus, veniam. Molestiae nisi magnam voluptates ad quisquam. Ex accusamus deserunt, impedit ipsum, odio nihil blanditiis accusantium.
+    </main>
 </template>
 
 <script src="jacek-kosciesza.js"></script> <!-- TODO: should this be async? -->

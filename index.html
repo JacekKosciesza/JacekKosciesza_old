@@ -13,9 +13,10 @@
 
     <title>Blog &middot; Jacek Kościesza</title>
     <link rel="icon" href="favicon.ico">
-
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.23/webcomponents.min.js"></script>-->
     <link rel="stylesheet" async href="./styles/all.css">
     <link rel="import" async href="./elements/app/jacek-kosciesza.html">
+    
     <style>
         .splash-screen {
             background-color: #1B1B1B;
@@ -34,7 +35,7 @@
 
 <body>
     <!-- TODO: should microdata be here or inside web component? -->
-    <jacek-kosciesza itemscope itemtype="http://schema.org/WebApplication">
+    <jacek-kosciesza itemscope itemtype="http://schema.org/WebApplication" log>
         <div class="splash-screen">
             <header></header>
         </div>

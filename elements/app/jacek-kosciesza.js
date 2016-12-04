@@ -9,12 +9,21 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
 
     constructor() {
         super();
-        console.log('jacek-kosciesza constructor');
+
+        if (this.hasAttribute('log')) {
+            this.log = (message) => console.log(message);
+        } else {
+            this.log = _ => {};
+        }
+
+        this.log('jacek-kosciesza constructor');
         const doc = document.currentScript.ownerDocument;
         const tmpl = doc.querySelector('#jacek-kosciesza-tmpl');
         this._root = this.attachShadow({mode: 'open'});
         this._root.appendChild(tmpl.content.cloneNode(true));
         
+        
+
         this.showHamburgerMenuButton = this._root.querySelector('.show-hamburger-menu');
         this.hideHamburgerMenuButton = this._root.querySelector('.hide-hamburger-menu');
         this.sideNavEl = this._root.querySelector('.side-nav');
@@ -34,7 +43,7 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
         this.addEventListeners();
     }
 
-    async connectedCallback() {
+    /*async*/ connectedCallback() {
         // console.log('1');
         // await new Promise(y => setTimeout(y, 2000));
         // console.log('Hello async/await!');
@@ -46,6 +55,10 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
 
+    }
+
+    _log(message) {
+        console.log(message);
     }
 
      addEventListeners() {
