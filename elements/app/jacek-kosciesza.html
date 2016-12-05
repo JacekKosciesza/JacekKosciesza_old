@@ -17,6 +17,7 @@
                 linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
             background-color: #131313;
             background-size: 20px 20px;
+            color: white;
 
             display: block;
             width: 100%;
@@ -188,6 +189,27 @@
         .side-nav__content li:hover {
             background-color: #ccc;
         }
+
+        /*Router & Views*/
+        jk-view {
+            contain: strict;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0,0,0.3,1),
+                        opacity  0.3s cubic-bezier(0,0,0.3,1);
+        }
+
+        jk-view.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: none;
+        }
     </style>
 
     <header class="top">
@@ -196,7 +218,14 @@
                 <g id="menu"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></g>
             </svg>
         </button>
-        <button class="btn">Login</button>
+        <!--<button class="btn">Login</button>-->
+        <nav>
+            <ul>
+                <li><a href="/">Blog</a></li>
+                <li><a href="/resources/">Resources</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!--TODO: Side nav element-->
@@ -222,14 +251,28 @@
             </header>
             <ul class="side-nav__content">
                 <li><a href="/">Blog</a></li>
-                <li><a href="/resoures">Resources</a></li>
-                <li><a href="/contact">Contact</a></li>
+                <li><a href="/resources/">Resources</a></li>
+                <li><a href="/contact/">Contact</a></li>
             </ul>
         </nav>
     </aside>
 
     
     <!--<aside>
+        
+    </aside>-->
+    <!--<jk-blog></jk-blog>
+    <main style="color: white;">
+        
+    </main>-->
+
+    
+
+    <jk-view route="^/$">
+        <jk-blog></jk-blog>
+    </jk-view>
+    <jk-view route="^/resources/(.*)">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita deleniti eligendi ullam rerum delectus, veniam. Molestiae nisi magnam voluptates ad quisquam. Ex accusamus deserunt, impedit ipsum, odio nihil blanditiis accusantium.</jk-view>
+    <jk-view route="^/contact/(.*)">
         <figure itemscope itemtype="http://schema.org/Person">
             <picture>
                 <source srcset="./images/jacek-kosciesza.webp" type="image/webp">
@@ -238,11 +281,11 @@
             </picture>
             <figcaption itemprop="name">Jacek Kościesza</figcaption>
         </figure>
-    </aside>-->
-    <jk-blog></jk-blog>
-    <main style="color: white;">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita deleniti eligendi ullam rerum delectus, veniam. Molestiae nisi magnam voluptates ad quisquam. Ex accusamus deserunt, impedit ipsum, odio nihil blanditiis accusantium.
-    </main>
+    </jk-view>
+
+    <jk-router></jk-router>    
 </template>
 
+<script defer src="jk-view.js"></script>
+<script defer src="jk-router.js"></script>
 <script src="jacek-kosciesza.js"></script> <!-- TODO: should this be async? -->

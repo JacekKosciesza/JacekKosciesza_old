@@ -10,13 +10,13 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
     constructor() {
         super();
 
-        if (this.hasAttribute('log')) {
-            this.log = (message) => console.log(message);
+        if (this.log) {
+            this.msg = (message) => console.log(message);
         } else {
-            this.log = _ => {};
+            this.msg = _ => {};
         }
 
-        this.log('jacek-kosciesza constructor');
+        this.msg('jacek-kosciesza constructor');
         const doc = document.currentScript.ownerDocument;
         const tmpl = doc.querySelector('#jacek-kosciesza-tmpl');
         this._root = this.attachShadow({mode: 'open'});
@@ -26,6 +26,25 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
         // this.cards = new Cards(this._root);
     }
 
+    get log() {
+        return this.hasAttribute('log');
+    }
+
+    connectedCallback() {
+        this.attachRouter();
+    }
+
+    attachRouter() {
+        const router = this._root.querySelector('jk-router');
+
+        for (let link of this._root.querySelectorAll('nav a')) {
+            link.addEventListener('click', (evt) => {
+                evt.preventDefault();
+                router.go(evt.target.href);
+            });
+        }
+    }
+
     disconnectedCallback() {
         //this.sideNav.removeEventListeners();
         //this.cards.removeEventListeners();
@@ -33,9 +52,5 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
 
-    }
-
-    _log(message) {
-        console.log(message);
     }
 });
