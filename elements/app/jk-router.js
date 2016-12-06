@@ -32,7 +32,7 @@ customElements.define('jk-router', class extends HTMLElement {
 
     createRoutes() {
         // TODO: figure out way to access shadow root of parent element?
-        for (let view of document.querySelector('jacek-kosciesza')._root.querySelectorAll('jk-view')) {
+        for (let view of document.querySelector('jacek-kosciesza').shadowRoot.querySelectorAll('jk-view')) {
             console.log(view);
 
             if (!view.route) {
@@ -72,33 +72,42 @@ customElements.define('jk-router', class extends HTMLElement {
             route;
         }
 
-        // figure out the new view
+        // Store the new view.
         this._newView = this._routes.get(route);
 
-        if (this._animating) {
+        // We don't want to create more promises for the outgoing view animation,
+        // because then we get a lot of hanging Promises, so we add a boolean gate
+        // here to stop if there's already a transition running.
+        if (this._isTransitioningBetweenViews) {
             return;
         }
 
-        this._animating = true;
+        this._isTransitioningBetweenViews = true;
 
         let outViewPromise = Promise.resolve();
 
-        // if there is a current view
+        // If there is a current view...
         if (this._currentView) {
-            // if it's the one we already have, just update it
+            // ...and it's the one we already have, just update it.
             if (this._currentView === this._newView) {
-                this._animating = false;
+                // No transitions, so remove the boolean gate.
+                this._isTransitioningBetweenViews = false;
+                
                 return this._currentView.update(data);
             }
 
-            // otherwise we animate it out
+            // Otherwise animate it out, and take the Promise made by the view as an
+            // indicator that the view is done.
             outViewPromise = this._currentView.out(data);
         }
 
         await outViewPromise;
 
+        // Whenever the outgoing animation is done (which may be immediately if
+        // there isn't one), update the references to the current view, allow
+        // outgoing animations to proceed.
         this._currentView = this._newView;
-        this._animating = false;
+        this._isTransitioningBetweenViews = false;
         this._newView.in(data);
     }
 });

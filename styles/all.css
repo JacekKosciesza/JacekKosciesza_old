@@ -5,6 +5,10 @@ html, body {
     padding: 0;
 }
 
+jacek-kosciesza {
+  --top-header-bg: cornflowerblue;
+}
+
 ::selection {
   background: #ffb7b7; /* WebKit/Blink Browsers */
 }

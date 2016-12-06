@@ -5,6 +5,9 @@
 <template id="jacek-kosciesza-tmpl">
     <style>
         :host {
+            all: initial;
+            display: block;
+            contain: content;
             font-family: Roboto, Arial, sans-serif;
             /*background-color: seagreen;*/
             /* http://lea.verou.me/css3patterns/#carbon */
@@ -18,8 +21,8 @@
             background-color: #131313;
             background-size: 20px 20px;
             color: white;
-
-            display: block;
+            
+            
             width: 100%;
             height: 100%;
             --header-background-color: cornflowerblue;
@@ -36,7 +39,7 @@
         header.top {
             height: 64px;
             width: 100%;
-            background-color: var(--header-background-color);
+            background-color: var(--top-header-bg, cornflowerblue);
             color: var(--header-color);
             box-shadow: 0 2px 4px rgba(0,0,0,0.4);
             display: flex;
@@ -209,6 +212,27 @@
             opacity: 1;
             pointer-events: auto;
             transform: none;
+        }
+
+        header.top ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        header.top ul li {
+            margin-left: 20px;
+            padding: 21px;
+        }
+
+        header.top ul li.active {
+            border-bottom: 2px solid red;
+        }
+
+        header.top ul a {
+            text-decoration: none;
+            color: white;
         }
     </style>
 

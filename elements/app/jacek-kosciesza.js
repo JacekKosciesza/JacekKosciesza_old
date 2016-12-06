@@ -19,11 +19,11 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
         this.msg('jacek-kosciesza constructor');
         const doc = document.currentScript.ownerDocument;
         const tmpl = doc.querySelector('#jacek-kosciesza-tmpl');
-        this._root = this.attachShadow({mode: 'open'});
-        this._root.appendChild(tmpl.content.cloneNode(true));
+        const shadowRoot = this.attachShadow({mode: 'open'});
+        shadowRoot.appendChild(tmpl.content.cloneNode(true));
         
-        // this.sideNav = new SideNav(this._root);
-        // this.cards = new Cards(this._root);
+        // this.sideNav = new SideNav(this.shadowRoot);
+        // this.cards = new Cards(this.shadowRoot);
     }
 
     get log() {
@@ -35,11 +35,16 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
     }
 
     attachRouter() {
-        const router = this._root.querySelector('jk-router');
-
-        for (let link of this._root.querySelectorAll('nav a')) {
+        // TODO: this is all quick and dirty - replace it with jk-tabs
+        const router = this.shadowRoot.querySelector('jk-router');
+        let links = this.shadowRoot.querySelectorAll('nav a')
+        for (let link of links) {
             link.addEventListener('click', (evt) => {
-                evt.preventDefault();
+                evt.preventDefault();                
+                for (let link of links) {
+                    link.parentNode.classList.remove('active');
+                }
+                evt.target.parentNode.classList.add('active');
                 router.go(evt.target.href);
             });
         }
