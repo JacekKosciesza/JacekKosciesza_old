@@ -55,7 +55,7 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
         //this.cards.removeEventListeners();
     }
 
-    attributeChangedCallback(name, oldValue, newValue) {
+    attributeChangedCallback(attrName, oldValue, newValue) {
 
     }
 });

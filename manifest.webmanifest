@@ -1,39 +1,17 @@
 {
     "name": "Jacek Kościesza Blog",
     "short_name": "JK Blog",
+    "description": "Full-stack developer's blog.",
     "dir": "rtl",
     "lang": "en",
-    "start_url": ".",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "seagreen",
     "theme_color": "seagreen",
-    "description": "Full-stack developer's blog.",
+    "orientation": "portrait",
     "icons": [{
-        "src": "images/touch/todo.png",
-        "sizes": "48x48",
-        "type": "image/png"
-    }, {
-        "src": "images/touch/todo.png",
-        "sizes": "72x72",
-        "type": "image/png"
-    }, {
-        "src": "images/touch/todo.png",
-        "sizes": "96x96",
-        "type": "image/png"
-    }, {
-        "src": "images/touch/todo.png",
-        "sizes": "144x144",
-        "type": "image/png"
-    }, {
-        "src": "images/touch/todo.png",
-        "sizes": "168x168",
-        "type": "image/png"
-    }, {
         "src": "images/touch/jacek-kosciesza-192x192.png",
         "sizes": "192x192",
         "type": "image/jpg"
-    }],
-    "related_applications": [{
-        "platform": "web"
     }]
 }
