@@ -10,7 +10,7 @@ customElements.define('jk-blog', class extends HTMLElement {
     constructor() {
         super();
         console.log('jk-blog constructor');
-        const doc = document.currentScript.ownerDocument;
+        const doc = document.jk.docs.get('jk-blog'); //document.currentScript.ownerDocument;
         const tmpl = doc.querySelector('#jk-blog-tmpl');
         this._root = this.attachShadow({mode: 'open'});
         this._root.appendChild(tmpl.content.cloneNode(true));
@@ -37,7 +37,7 @@ customElements.define('jk-blog', class extends HTMLElement {
         this.onPlayButtonClicked = this.onPlayButtonClicked.bind(this);
 
         //this._playButton.addEventListener('click', _ => this.onPlayButtonClicked());
-        this._playButton.addEventListener('click', this.onPlayButtonClicked);
+        if (this._playButton) { this._playButton.addEventListener('click', this.onPlayButtonClicked); }
         
     }
 
@@ -56,10 +56,12 @@ customElements.define('jk-blog', class extends HTMLElement {
         let response = await fetch('https://jacekkosciesza-659f4.firebaseio.com/posts.json');
         let posts = await response.json();
         posts.forEach((post) => {
-            let li = document.createElement('li');
-            li.innerText = post.title;
-            let ul = this._root.querySelector('#posts');
-            ul.appendChild(li);
+            let jkPost = document.createElement('jk-post');
+            //jkPost.post = post;
+            jkPost.setAttribute('post', JSON.stringify(post));
+
+            let postsDiv = this._root.querySelector('#posts');
+            postsDiv.appendChild(jkPost);
         });
     }
 });

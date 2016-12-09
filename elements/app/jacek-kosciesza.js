@@ -17,13 +17,13 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
         }
 
         this.msg('jacek-kosciesza constructor');
-        const doc = document.currentScript.ownerDocument;
+        const doc = document.jk.docs.get('jacek-kosciesza'); //document.currentScript.ownerDocument;
         const tmpl = doc.querySelector('#jacek-kosciesza-tmpl');
         const shadowRoot = this.attachShadow({mode: 'open'});
         shadowRoot.appendChild(tmpl.content.cloneNode(true));
         
-        // this.sideNav = new SideNav(this.shadowRoot);
-        // this.cards = new Cards(this.shadowRoot);
+        this.sideNav = new SideNav(this.shadowRoot);
+        this.cards = new Cards(this.shadowRoot);
     }
 
     get log() {
@@ -51,8 +51,8 @@ customElements.define('jacek-kosciesza', class extends HTMLElement {
     }
 
     disconnectedCallback() {
-        //this.sideNav.removeEventListeners();
-        //this.cards.removeEventListeners();
+        this.sideNav.removeEventListeners();
+        this.cards.removeEventListeners();
     }
 
     attributeChangedCallback(attrName, oldValue, newValue) {
