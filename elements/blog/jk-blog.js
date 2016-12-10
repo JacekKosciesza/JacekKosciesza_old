@@ -19,6 +19,7 @@ customElements.define('jk-blog', class extends HTMLElement {
     connectedCallback() {
         this._playButton = this._root.querySelector('#play');
         this._textToSpeak = this._root.querySelector('#text');
+        this._editComment = this._root.querySelector('#editComment');
 
         this.getPosts();
         
@@ -35,14 +36,17 @@ customElements.define('jk-blog', class extends HTMLElement {
 
     addEventListeners() {        
         this.onPlayButtonClicked = this.onPlayButtonClicked.bind(this);
+        this._onNewComment = this._onNewComment.bind(this);
 
         //this._playButton.addEventListener('click', _ => this.onPlayButtonClicked());
         if (this._playButton) { this._playButton.addEventListener('click', this.onPlayButtonClicked); }
+        this._editComment.addEventListener('jk-new-comment', this._onNewComment);
         
     }
 
     removeEventListeners() {
         this._playButton.removeEventListener('click', this.onPlayButtonClicked);
+        this.removeEventListener('jk-new-comment', this._onNewComment);
     }
 
     onPlayButtonClicked() {
@@ -63,5 +67,9 @@ customElements.define('jk-blog', class extends HTMLElement {
             let postsDiv = this._root.querySelector('#posts');
             postsDiv.appendChild(jkPost);
         });
+    }
+
+    _onNewComment(evt) {
+        console.log(`New comment: ${JSON.stringify(evt.detail)}`);
     }
 });

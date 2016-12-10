@@ -1,0 +1,16 @@
+<template id="jk-edit-comment">
+    <style>
+        button#comment {
+            background: cornflowerblue;
+        }
+    </style>
+    <textarea name="body" id="body" cols="30" rows="10"></textarea>
+    <button id="cancel">Cancel</button>
+    <button id="comment">Comment</button>
+</template>
+
+<script>
+    document.jk.docs.set('jk-edit-comment', document.currentScript.ownerDocument);
+</script>
+
+<script src="jk-edit-comment.js"></script>
