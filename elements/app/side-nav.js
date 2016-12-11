@@ -1,9 +1,10 @@
 class SideNav {
-    constructor(_root) {
-        this.showHamburgerMenuButton = _root.querySelector('.show-hamburger-menu');
-        this.hideHamburgerMenuButton = _root.querySelector('.hide-hamburger-menu');
-        this.sideNavEl = _root.querySelector('.side-nav');
-        this.sideNavContainer = _root.querySelector('.side-nav__container');
+    constructor(jacekKosciesza) {
+        this.jacekKosciesza = jacekKosciesza;
+        this.showHamburgerMenuButton = jacekKosciesza.shadowRoot.querySelector('.show-hamburger-menu');
+        this.hideHamburgerMenuButton = jacekKosciesza.shadowRoot.querySelector('.hide-hamburger-menu');
+        this.sideNavEl = jacekKosciesza.shadowRoot.querySelector('.side-nav');
+        this.sideNavContainer = jacekKosciesza.shadowRoot.querySelector('.side-nav__container');
 
         this.showSideNav = this.showSideNav.bind(this);
         this.hideSideNav = this.hideSideNav.bind(this);
@@ -50,12 +51,32 @@ class SideNav {
         this.sideNavEl.classList.add('side-nav--animatable');
         this.sideNavEl.classList.add('side-nav--visible');
         this.sideNavEl.addEventListener('transitionend', this.onTransitionEnd);
+
+        // Store the event for later.
+        const action =
+        {
+            category: 'nav',
+            action: 'click',
+            label: 'nav',
+            value: 'open'
+        };
+        this.jacekKosciesza.dispatchEvent(new CustomEvent('new-action', { detail:  action}));
     }
 
     hideSideNav() {
         this.sideNavEl.classList.add('side-nav--animatable');
         this.sideNavEl.classList.remove('side-nav--visible');
         this.sideNavEl.addEventListener('transitionend', this.onTransitionEnd);
+
+        // Store the event for later.
+        const action =
+        {
+            category: 'nav',
+            action: 'click',
+            label: 'nav',
+            value: 'close'
+        };
+        this.jacekKosciesza.dispatchEvent(new CustomEvent('new-action', { detail:  action}));
     }
 
     blockClicks(evt) {

@@ -3,9 +3,9 @@
 /* eslint-env es6 */
 
 class Cards {
-    constructor(_root) {
-        this._root = _root;
-        this.cards = _root.querySelectorAll('.card');
+    constructor(jacekKosciesza) {
+        this.jacekKosciesza = jacekKosciesza;
+        this.cards = jacekKosciesza.shadowRoot.querySelectorAll('.card');
 
         this.onTouchStart = this.onTouchStart.bind(this);
         this.onTouchMove = this.onTouchMove.bind(this);
@@ -22,15 +22,15 @@ class Cards {
     }
 
     addEventListeners() {
-        this._root.addEventListener('touchstart', this.onTouchStart);
+        this.jacekKosciesza.shadowRoot.addEventListener('touchstart', this.onTouchStart);
         document.addEventListener('touchmove', this.onTouchMove);
-        this._root.addEventListener('touchend', this.onTouchEnd);
+        this.jacekKosciesza.shadowRoot.addEventListener('touchend', this.onTouchEnd);
     }
 
     removeEventListeners() {
-        this._root.removeEventListener('touchstart', this.onTouchStart);
+        this.jacekKosciesza.shadowRoot.removeEventListener('touchstart', this.onTouchStart);
         document.removeEventListener('touchmove', this.onTouchMove);
-        this._root.removeEventListener('touchend', this.onTouchEnd);
+        this.jacekKosciesza.shadowRoot.removeEventListener('touchend', this.onTouchEnd);
     }
 
     onTouchStart(evt) {
