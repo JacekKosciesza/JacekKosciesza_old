@@ -17,8 +17,9 @@
 
     <script>
         document.jk = { docs: new Map() };
+        console.info('%cjacek-kosciesza v0.1', 'color: #bada55')
     </script>
-    <!--<script src='/scripts/service-worker.install.js'></script>-->
+    <script src='/scripts/service-worker.install.js'></script>
     <script src='/scripts/web-components.polyfill.js'></script>
     <script src='/scripts/request-idle-callback.shim.js'></script>
 
@@ -72,6 +73,10 @@
             95%{width: 95%;}
             100%{width: 100%;}
         }
+
+        .splash-screen main {
+            color: white;
+        }
     </style>
 </head>
 
@@ -82,6 +87,11 @@
             <header>
                 <div class="progress"></div>
             </header>
+            <main>
+                <noscript>
+                    This website requires JavaScript to work.
+                </noscript>
+            </main>
         </div>
     </jacek-kosciesza>
 </body>
