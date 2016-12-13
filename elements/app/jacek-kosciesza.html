@@ -125,6 +125,7 @@
             background: rgba(0,0,0,0.7);
             opacity: 0;
             will-change: opacity;
+            transform: translateZ(0); /* kind of will-change for older browsers and safari - hack to make compositor layer*/
             transition: opacity 0.3s cubic-bezier(0,0,0.3,1);
         }
 
@@ -301,7 +302,22 @@
     <jk-view route="^/$">
         <jk-blog></jk-blog>
     </jk-view>
-    <jk-view route="^/resources/(.*)">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita deleniti eligendi ullam rerum delectus, veniam. Molestiae nisi magnam voluptates ad quisquam. Ex accusamus deserunt, impedit ipsum, odio nihil blanditiis accusantium.</jk-view>
+    <jk-view route="^/resources/(.*)">
+        <h2>CSS (Cascading Style Sheets)</h2>
+        <ul>
+            <li><a href="https://csstriggers.com/" rel="nofollow">CSS Triggers</a></li> <!--advanced-->
+        </ul>
+
+        <h2>General</h2>
+        <ul>
+            <li><a href="https://developers.google.com/web/fundamentals/">Web Fundamentals (Google Developers)</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/">MDN - Mozilla Developer Network</a></li>
+            <li><a href="https://www.google.com/intl/en/webmasters/#?modal_active=none">Google Webmasters</a></li>
+        </ul>
+
+        <h3>Mobile</h3>
+        <!--https://search.google.com/search-console/mobile-friendly-->
+    </jk-view>
     <jk-view route="^/contact/(.*)">
         <figure itemscope itemtype="http://schema.org/Person">
             <picture>
