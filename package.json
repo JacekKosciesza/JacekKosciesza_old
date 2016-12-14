@@ -1,0 +1,35 @@
+{
+  "name": "jacek-kosciesza",
+  "version": "0.1.0",
+  "description": "Jacek Kościesza Blog",
+  "scripts": {
+    "serve": "http-server -p 1234",
+    "clean": "rimraf ./build && mkdir build",
+    "prebuild": "npm run clean",
+    "build":  "echo TODO: html-minifier",
+    "postbuild":  "echo TODO: postbuild",
+    "test": "echo TODO: test",
+    "external": "node external.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacekKosciesza/JacekKosciesza.git"
+  },
+  "keywords": [
+    "Jacek",
+    "Kościesza",
+    "blog",
+    "web",
+    "platform",
+    "web",
+    "components",
+    "ES2015",
+    "ES2016",
+    "HTML5"
+  ],
+  "author": "Jacek Kościesza <jacek.kosciesza@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/JacekKosciesza/JacekKosciesza/issues"
+  },
+  "homepage": "https://github.com/JacekKosciesza/JacekKosciesza#readme"
+}

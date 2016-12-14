@@ -12,14 +12,15 @@ customElements.define('jk-blog', class extends HTMLElement {
         console.log('jk-blog constructor');
         const doc = document.jk.docs.get('jk-blog'); //document.currentScript.ownerDocument;
         const tmpl = doc.querySelector('#jk-blog-tmpl');
-        this._root = this.attachShadow({mode: 'open'});
-        this._root.appendChild(tmpl.content.cloneNode(true));
+        const shadowRoot = this.attachShadow({mode: 'open'});
+        shadowRoot.appendChild(tmpl.content.cloneNode(true));
     }
 
     connectedCallback() {
-        this._playButton = this._root.querySelector('#play');
-        this._textToSpeak = this._root.querySelector('#text');
-        this._editComment = this._root.querySelector('#editComment');
+        this._playButton = this.shadowRoot.querySelector('#play');
+        this._textToSpeak = this.shadowRoot.querySelector('#text');
+        this._editComment = this.shadowRoot.querySelector('#editComment');
+        this._blogStore = this.shadowRoot.querySelector('jk-blog-store');
 
         this.getPosts();
         
@@ -41,7 +42,6 @@ customElements.define('jk-blog', class extends HTMLElement {
         //this._playButton.addEventListener('click', _ => this.onPlayButtonClicked());
         if (this._playButton) { this._playButton.addEventListener('click', this.onPlayButtonClicked); }
         this._editComment.addEventListener('jk-new-comment', this._onNewComment);
-        
     }
 
     removeEventListeners() {
@@ -57,14 +57,13 @@ customElements.define('jk-blog', class extends HTMLElement {
     }
 
     async getPosts() {
-        let response = await fetch('https://jacekkosciesza-659f4.firebaseio.com/posts.json');
-        let posts = await response.json();
+        let posts = await this._blogStore.getPosts();
         posts.forEach((post) => {
             let jkPost = document.createElement('jk-post');
             //jkPost.post = post;
             jkPost.setAttribute('post', JSON.stringify(post));
 
-            let postsDiv = this._root.querySelector('#posts');
+            let postsDiv = this.shadowRoot.querySelector('#posts');
             postsDiv.appendChild(jkPost);
         });
     }

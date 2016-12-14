@@ -1,3 +1,4 @@
+<link rel="import" href="jk-blog-store.html">
 <link rel="import" href="jk-post.html">
 <link rel="import" href="../comments/jk-edit-comment.html">
 
@@ -25,6 +26,7 @@
         }
     </style>
 
+    <jk-blog-store url="https://jacekkosciesza-659f4.firebaseio.com/posts.json" posts="[[posts]]"></jk-blog-store>
     <main itemscope itemtype="http://schema.org/Blog">
         <!--<p id="text">Use the Web Platform</p>
         <button id="play" style="width:24px;height:24px;padding:0;">
@@ -32,6 +34,9 @@
                 <g id="play-arrow"><path d="M8 5v14l11-7z"/></g>
             </svg>
         </button>-->
+        <template for="post of jk-blog-store.posts">
+            <jk-post post="[[post]]"></jk-post>
+        </template>
         <div id="posts"></div>
         <jk-edit-comment id="editComment"></jk-edit-comment>
     </main>
