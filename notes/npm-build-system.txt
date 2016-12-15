@@ -3,3 +3,9 @@ npm init
 https://medium.freecodecamp.com/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8#.6nupcpkxk
 https://app.pluralsight.com/library/courses/javascript-development-environment/table-of-contents
 https://app.pluralsight.com/library/courses/npm-build-tool-introduction/table-of-contents
+
+Babel
+http://babeljs.io/docs/setup/#installation
+
+npm install --save-dev babel-cli
+npm install babel-preset-es2015 --save-dev
