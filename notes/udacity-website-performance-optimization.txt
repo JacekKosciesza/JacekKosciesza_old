@@ -9,3 +9,5 @@ CRP metrics:
 - minimum critical path length
 
 browsers have preload scanner which can discovery other CSS and JavaScipt links (in order to start downloading them) even though parser is blocked (by other JavaScript)
+
+Measure first then optimize.

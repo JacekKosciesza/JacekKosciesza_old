@@ -9,6 +9,8 @@
     "build": "babel elements -d build/elements",
     "postbuild": "echo TODO: html-minifier",
     "test": "echo TODO: test",
+    "lint": "echo TODO: lint",
+    "html": "html-minifier --input-dir ./elements --output-dir ./build/elements --collapse-whitespace --minify-css --remove-comments --file-ext html",
     "external": "node external.js"
   },
   "repository": {
@@ -34,6 +36,7 @@
   "homepage": "https://github.com/JacekKosciesza/JacekKosciesza#readme",
   "devDependencies": {
     "babel-cli": "^6.18.0",
-    "babel-plugin-transform-async-to-generator": "^6.16.0"
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "html-minifier": "^3.2.3"
   }
 }
