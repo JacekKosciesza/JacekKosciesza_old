@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "description": "Jacek Kościesza Blog",
   "scripts": {
-    "serve": "http-server -p 1234",
+    "serve": "http-server ./src -p 1234",
     "clean": "rimraf ./build && mkdir build",
     "prebuild": "npm run clean",
-    "build": "babel elements -d build/elements",
-    "postbuild": "echo TODO: html-minifier",
+    "build": "npm-run-all babel html",
+    "postbuild": "echo TODO: postbuild",
     "test": "echo TODO: test",
     "lint": "echo TODO: lint",
-    "html": "html-minifier --input-dir ./elements --output-dir ./build/elements --collapse-whitespace --minify-css --remove-comments --file-ext html",
+    "html": "html-minifier --input-dir ./src --output-dir ./build --collapse-whitespace --minify-css --remove-comments --file-ext html",
+    "babel": "babel ./src -d ./build",
     "external": "node external.js"
   },
   "repository": {
@@ -37,6 +38,7 @@
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-plugin-transform-async-to-generator": "^6.16.0",
-    "html-minifier": "^3.2.3"
+    "html-minifier": "^3.2.3",
+    "npm-run-all": "^3.1.2"
   }
 }
