@@ -6,12 +6,13 @@
     "serve": "http-server ./src -p 1234",
     "clean": "rimraf ./build && mkdir build",
     "prebuild": "npm run clean",
-    "build": "npm-run-all babel html",
+    "build": "npm-run-all babel html copy",
     "postbuild": "echo TODO: postbuild",
     "test": "echo TODO: test",
     "lint": "echo TODO: lint",
     "html": "html-minifier --input-dir ./src --output-dir ./build --collapse-whitespace --minify-css --remove-comments --file-ext html",
     "babel": "babel ./src -d ./build",
+    "copy": "cp -R ./src/{*.ico,*.txt,*.webmanifest,styles,images} ./build",
     "external": "node external.js"
   },
   "repository": {

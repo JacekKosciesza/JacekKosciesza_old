@@ -1,0 +1,3 @@
+http://stackoverflow.com/questions/39144317/es6-modules-native-support
+https://github.com/ModuleLoader/browser-es-module-loader
+https://blogs.windows.com/msedgedev/2016/05/17/es6-modules-and-beyond/#RPQKtuBY0D46DCYa.97
