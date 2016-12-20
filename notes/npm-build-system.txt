@@ -10,3 +10,5 @@ http://babeljs.io/docs/setup/#installation
 npm install --save-dev babel-cli
 npm install babel-plugin-transform-async-to-generator --save-dev
 npm install --save-dev html-minifier
+
+https://css-tricks.com/why-npm-scripts/
