@@ -6,14 +6,16 @@
     "serve": "http-server ./src -p 1234",
     "clean": "rimraf ./build && mkdir build",
     "prebuild": "npm run clean",
-    "build": "npm-run-all babel html copy images",
+    "build": "npm-run-all babel html copy images autoprefixer",
     "postbuild": "echo TODO: postbuild",
     "test": "echo TODO: test",
     "lint": "echo TODO: lint",
     "html": "html-minifier --input-dir ./src --output-dir ./build --collapse-whitespace --minify-css --remove-comments --file-ext html",
     "babel": "babel ./src -d ./build",
-    "copy": "cp -R ./src/{*.ico,*.txt,*.webmanifest,styles} ./build",
+    "copy": "cp -R ./src/{*.ico,*.txt,*.webmanifest} ./build",
     "images": "imagemin ./src/images/* --out-dir=./build/images && imagemin ./src/images/touch/* --out-dir=./build/images/touch",
+    "lighthouse": "lighthouse http://localhost:1234",
+    "autoprefixer": "postcss --use autoprefixer ./src/styles/*.css -d ./build/styles",
     "external": "node external.js"
   },
   "repository": {
@@ -38,10 +40,13 @@
   },
   "homepage": "https://github.com/JacekKosciesza/JacekKosciesza#readme",
   "devDependencies": {
+    "autoprefixer": "^6.5.4",
     "babel-cli": "^6.18.0",
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "html-minifier": "^3.2.3",
     "imagemin-cli": "^3.0.0",
-    "npm-run-all": "^3.1.2"
+    "lighthouse": "^1.3.0",
+    "npm-run-all": "^3.1.2",
+    "postcss-cli": "^2.6.0"
   }
 }
