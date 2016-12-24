@@ -1,7 +1,7 @@
 {
   "name": "jacek-kosciesza",
   "homepage": "https://jacekkosciesza.com",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Jacek Kościesza's personal website",
   "author": "Jacek Kościesza <jacek.kosciesza@gmail.com>",
   "keywords": [
@@ -12,7 +12,10 @@
   "scripts": {
     "serve": "http-server ./build -p 80",
     "prebuild": "rimraf ./build && mkdir build",
-    "build": "html-minifier --input-dir ./src --output-dir ./build --collapse-whitespace --remove-comments --file-ext html"
+    "build": "npm run html && npm run tokens",
+    "tokens": "node tokens.js ./build/index.html",
+    "html": "html-minifier --input-dir ./src --output-dir ./build --collapse-whitespace --remove-comments --file-ext html",
+    "deploy": "firebase deploy"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,7 @@
     "url": "https://github.com/JacekKosciesza/JacekKosciesza/issues"
   },
   "devDependencies": {
+    "firebase-tools": "^3.2.1",
     "html-minifier": "^3.2.3",
     "http-server": "^0.9.0",
     "rimraf": "^2.5.4"
