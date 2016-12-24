@@ -1,6 +1,8 @@
 language: node_js
 node_js:
     - "node"
+sudo: required
+dist: trusty
 branches:
   only:
     - master
@@ -21,7 +23,7 @@ script:
     - chmod u+x start-server.sh
     - ./start-server.sh
     #- npm run lighthouse
-    - lighthouse --output=json https://jacekkosciesza.com --output-path=./validate/lighthouse.json
+    - lighthouse --output=json http://localhost:8080 --output-path=./validate/lighthouse.json
     - node lighthouse-check.js ./validate/lighthouse.json
 after_success:
     - echo 'Deploying https://jacekkosciesza.com to Firebase'
