@@ -18,6 +18,7 @@ script:
     - echo 'Building https://jacekkosciesza.com'
     - npm run build
     #- npm run serve
+    - chmod u+x start-server.sh
     - ./start-server.sh
     #- npm run lighthouse
     - lighthouse --output=json https://jacekkosciesza.com --output-path=./validate/lighthouse.json
