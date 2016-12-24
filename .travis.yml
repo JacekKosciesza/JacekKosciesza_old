@@ -20,7 +20,7 @@ script:
     #- npm run serve
     - ./start-server.sh
     #- npm run lighthouse
-    - lighthouse --output=json http://localhost:8080 --output-path=./validate/lighthouse.json
+    - lighthouse --output=json https://jacekkosciesza.com --output-path=./validate/lighthouse.json
     - node lighthouse-check.js ./validate/lighthouse.json
 after_success:
     - echo 'Deploying https://jacekkosciesza.com to Firebase'
