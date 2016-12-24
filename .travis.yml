@@ -9,7 +9,8 @@ install:
 script:
     - echo 'Building https://jacekkosciesza.com'
     - npm run build
-    - npm run serve
+    #- npm run serve
+    - ./start-server.sh
     - npm run lighthouse
 after_success:
     - echo 'Deploying https://jacekkosciesza.com to Firebase'
