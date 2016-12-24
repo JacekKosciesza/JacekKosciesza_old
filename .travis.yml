@@ -19,12 +19,9 @@ before_script:
 script:
     - echo 'Building https://jacekkosciesza.com'
     - npm run build
-    #- npm run serve
     - chmod u+x start-server.sh
     - ./start-server.sh
-    #- npm run lighthouse
-    - lighthouse --output=json http://localhost:8080 --output-path=./validate/lighthouse.json
-    - node lighthouse-check.js ./validate/lighthouse.json
+    - npm run lighthouse
 after_success:
     - echo 'Deploying https://jacekkosciesza.com to Firebase'
     - firebase deploy --token=${FIREBASE_API_TOKEN}
