@@ -20,7 +20,6 @@ function replaceTokens(filename, replacements) {
 
         let result = data;
         for (let [token, replacement] of replacements) {
-            console.log(token);
             result = result.replace(`{{${token}}}`, replacement);
         }
 

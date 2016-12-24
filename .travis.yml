@@ -9,6 +9,8 @@ install:
 script:
     - echo 'Building https://jacekkosciesza.com'
     - npm run build
+    - npm run serve
+    - npm run lighthouse
 after_success:
     - echo 'Deploying https://jacekkosciesza.com to Firebase'
     - firebase deploy --token=${FIREBASE_API_TOKEN}
