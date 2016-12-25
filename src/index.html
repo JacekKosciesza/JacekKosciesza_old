@@ -12,16 +12,51 @@
     
     <link rel="icon" href="favicon.ico">
     <link rel="manifest" href="/manifest.json">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .layout {
+            min-height: 100%;
+            display: grid;
+            grid-template-columns: auto 200px;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas: "header header" "main aside" "footer footer";                                
+        }
+
+        .layout > header {
+            grid-area: header;
+            background: cornflowerblue;
+            height: 64px;
+        }
+
+        .layout > main {
+            grid-area: main;
+        }
+
+        .layout > aside {
+            grid-area: aside;
+        }
+
+        .layout > footer {
+            grid-area: footer;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    <main>
-        <h1>Jacek Kościesza</h1>
-        <p>This is my personal website</p>
-    </main>
-    <footer>
-        Copyright &copy; {{YEAR}} Jacek Kościesza v{{VERSION}}
-    </footer>
+    <div class="page layout">
+        <header></header>
+        <main></main>
+        <aside></aside>
+        <footer>
+            Copyright &copy; {{YEAR}} Jacek Kościesza v{{VERSION}}
+        </footer>
+    </div>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', async _ => {

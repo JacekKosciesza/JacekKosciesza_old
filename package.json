@@ -1,7 +1,7 @@
 {
   "name": "jacek-kosciesza",
   "homepage": "https://jacekkosciesza.com",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Jacek Kościesza's personal website",
   "author": "Jacek Kościesza <jacek.kosciesza@gmail.com>",
   "keywords": [
@@ -15,7 +15,7 @@
     "build": "npm-run-all html copy images",
     "postbuild": "npm run tokens",
     "tokens": "node tokens.js ./build/index.html",
-    "html": "html-minifier --input-dir ./src --output-dir ./build --collapse-whitespace --remove-comments --minify-js --file-ext html",
+    "html": "html-minifier --input-dir ./src --output-dir ./build --collapse-whitespace --remove-comments --minify-css --minify-js --file-ext html",
     "copy": "cp ./src/sw.js ./build && cp ./src/favicon.ico ./build && cp ./src/manifest.json ./build",
     "images": "imagemin ./src/images/icons/* --out-dir=./build/images/icons",
     "lighthouse": "lighthouse --output=json http://localhost:8080 --output-path=./validate/lighthouse.json && node lighthouse-check.js ./validate/lighthouse.json",
