@@ -9,19 +9,17 @@ branches:
 install:
     - npm install
 before_script:
-  - npm install -g lighthouse
-  - export DISPLAY=:99.0
-  - export LIGHTHOUSE_CHROMIUM_PATH="$(pwd)/chrome-linux/chrome"
-  - sh -e /etc/init.d/xvfb start
-  - npm explore -g lighthouse -- ./lighthouse-core/scripts/download-chrome.sh
-  - mv $(npm root -g)/lighthouse/chrome-linux .
-  - $LIGHTHOUSE_CHROMIUM_PATH --version
-script:
-    - echo 'Building https://jacekkosciesza.com'
-    - npm run build
+    - npm install -g lighthouse
+    - export DISPLAY=:99.0
+    - export LIGHTHOUSE_CHROMIUM_PATH="$(pwd)/chrome-linux/chrome"
+    - sh -e /etc/init.d/xvfb start
+    - npm explore -g lighthouse -- ./lighthouse-core/scripts/download-chrome.sh
+    - mv $(npm root -g)/lighthouse/chrome-linux .
+    - $LIGHTHOUSE_CHROMIUM_PATH --version
     - chmod u+x start-server.sh
+script:
+    - npm run build
     - ./start-server.sh
     - npm run lighthouse
 after_success:
-    - echo 'Deploying https://jacekkosciesza.com to Firebase'
     - firebase deploy --token=${FIREBASE_API_TOKEN}
