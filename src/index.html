@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Jacek Kościesza | Personal Website</title>
-        <meta name="description" content="Personal website of Jacek Kościesza.">
-    </head>
-    <body>
-        <main>
-            <h1>Jacek Kościesza</h1>
-            <p>This is my personal website</p>
-        </main>
-        <footer>
-            Copyright &copy; {{YEAR}} Jacek Kościesza v{{VERSION}}
-        </footer>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jacek Kościesza | Personal Website</title>
+    <meta name="description" content="Personal website of Jacek Kościesza.">
+</head>
+
+<body>
+    <main>
+        <h1>Jacek Kościesza</h1>
+        <p>This is my personal website</p>
+    </main>
+    <footer>
+        Copyright &copy; {{YEAR}} Jacek Kościesza v{{VERSION}}
+    </footer>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async _ => {
+                try {
+                    let registration = await navigator.serviceWorker.register('/sw.js', { scope: '/' });
+                    console.info('Service Worker registration successful with scope: ', registration.scope);
+                } catch (ex) {
+                    console.error('Service Worker registration failed: ', ex);
+                }
+            });
+        }
+    </script>
+</body>
+
 </html>
