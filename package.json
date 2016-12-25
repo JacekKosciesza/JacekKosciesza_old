@@ -12,10 +12,12 @@
   "scripts": {
     "serve": "http-server ./build -p 8080",
     "prebuild": "rimraf ./build ./validate && mkdir build validate",
-    "build": "npm run html && npm run tokens && npm run copy",
+    "build": "npm-run-all html copy images",
+    "postbuild": "npm run tokens",
     "tokens": "node tokens.js ./build/index.html",
-    "html": "html-minifier --input-dir ./src --output-dir ./build --collapse-whitespace --remove-comments --file-ext html",
-    "copy": "cp ./src/sw.js ./build",
+    "html": "html-minifier --input-dir ./src --output-dir ./build --collapse-whitespace --remove-comments --minify-js --file-ext html",
+    "copy": "cp ./src/sw.js ./build && cp ./src/favicon.ico ./build",
+    "images": "imagemin ./src/images/icons/* --out-dir=./build/images/icons",
     "lighthouse": "lighthouse --output=json http://localhost:8080 --output-path=./validate/lighthouse.json && node lighthouse-check.js ./validate/lighthouse.json",
     "deploy": "firebase deploy"
   },
@@ -31,7 +33,9 @@
     "firebase-tools": "^3.2.1",
     "html-minifier": "^3.2.3",
     "http-server": "^0.9.0",
+    "imagemin-cli": "^3.0.0",
     "lighthouse": "^1.3.2",
+    "npm-run-all": "^3.1.2",
     "rimraf": "^2.5.4"
   }
 }

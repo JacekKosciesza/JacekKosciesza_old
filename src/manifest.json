@@ -1,0 +1,23 @@
+{
+    "name": "Jacek Kościesza",
+    "short_name": "JK",
+    "description": "Personal website of Jacek Kościesza",
+    "dir": "rtl",
+    "lang": "en",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "white",
+    "theme_color": "white",
+    "orientation": "portrait",
+    "icons": [{
+        "src": "images/icons/red-tie-icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "images/icons/red-tie-icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+    ]
+}
