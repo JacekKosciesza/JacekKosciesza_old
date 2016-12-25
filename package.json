@@ -15,7 +15,7 @@
     "build": "npm run html && npm run tokens && npm run copy",
     "tokens": "node tokens.js ./build/index.html",
     "html": "html-minifier --input-dir ./src --output-dir ./build --collapse-whitespace --remove-comments --file-ext html",
-    "copy": "cp -R ./src/{sw.js} ./build",
+    "copy": "cp ./src/sw.js ./build",
     "lighthouse": "lighthouse --output=json http://localhost:8080 --output-path=./validate/lighthouse.json && node lighthouse-check.js ./validate/lighthouse.json",
     "deploy": "firebase deploy"
   },
