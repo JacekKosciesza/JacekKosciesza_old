@@ -29,8 +29,7 @@
 
         .layout > header {
             grid-area: header;
-            background: cornflowerblue;
-            height: 64px;
+            background: hsl(219, 79%, 66%); /* cornflowerblue */ 
         }
 
         .layout > main {
@@ -45,12 +44,41 @@
             grid-area: footer;
             text-align: center;
         }
+
+        .navigation  {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .navigation a {
+            display: block;
+            text-decoration: none;
+            color: white;
+            padding: 1em;
+        }
+
+        .navigation a:hover {
+            background:hsl(219, 79%, 60%);
+        }
+
+        .navigation li.active {
+            border-bottom: 2px solid red;
+        }
     </style>
 </head>
 
 <body>
     <div class="page layout">
-        <header></header>
+        <header>
+            <ul class="navigation">
+                <li class="active"><a href="/blog">Blog</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </header>
         <main></main>
         <aside></aside>
         <footer>
