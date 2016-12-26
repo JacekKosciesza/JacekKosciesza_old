@@ -1,0 +1,11 @@
+/* TEAM */
+	One-Men Army: Jacek Kościesza
+	Contact: jacek.kosciesza [at] gmail.com
+	Twitter: @jacekkosciesza
+	From: Gliwice, Śląskie, Poland
+
+/* SITE */
+    Last update: {{YYYY/MM/DD}}
+	Language: English
+	Doctype: HTML5
+	IDE: VS Code

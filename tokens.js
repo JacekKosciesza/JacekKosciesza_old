@@ -1,9 +1,12 @@
 var pjson = require('./package.json');
 var fs = require('fs')
 
+let now = new Date();
+
 let replacements = new Map([
-    ['YEAR', new Date().getFullYear()],
-    ['VERSION', pjson.version]
+    ['YEAR', now.getFullYear()],
+    ['VERSION', pjson.version],
+    ['YYYY/MM/DD', `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()}`]
 ]);
 
 let filenames = process.argv.slice(2);
