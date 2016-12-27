@@ -1,11 +1,16 @@
 'use strict';
 
 const NAME = 'JacekKosciesza';
-const VERSION = '0.6.0';
+const VERSION = '{{VERSION}}';
 const CACHE_NAME = `${NAME}-v${VERSION}`;
 
 var ASSETS = [
-    '/'
+    '/',
+    '/favicon.ico',
+    '/scripts/navigation.js',
+    '/scripts/app.js',
+    '/images/icons/red-tie-icon-192x192.png',
+    '/images/icons/red-tie-icon-512x512.png'
 ];
 
 self.oninstall = evt => evt.waitUntil(async function () {

@@ -19,7 +19,7 @@ try {
 
   console.log(chalk.red(`Score: ${avg}`));
 
-  if (avg < 0.8) {
+  if (avg < 0.875) {
     console.log(JSON.stringify(pwa, null, 2));
     process.exit(1);
   }

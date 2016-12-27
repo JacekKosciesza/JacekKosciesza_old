@@ -4,6 +4,8 @@ class App {
         this.registerServiceWorker();
         this.addEventListeners();
         this.updateOfflineStatus();
+
+        this.navigation = new Navigation();
     }
 
     printVersion() {
