@@ -23,7 +23,7 @@ function replaceTokens(filename, replacements) {
 
         let result = data;
         for (let [token, replacement] of replacements) {
-            result = result.replace(`{{${token}}}`, replacement);
+            result = result.replace(new RegExp(`{{${token}}}`, 'g'), replacement);
         }
 
         fs.writeFile(filename, result, 'utf8', function (err) {

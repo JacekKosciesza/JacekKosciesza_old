@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebSite">
+<html lang="en" itemscope itemtype="http://schema.org/WebSite" version="{{VERSION}}">
 
 <head>
     <meta charset="UTF-8">
@@ -77,6 +77,7 @@
             border-bottom: 2px solid red;
         }
     </style>
+    <script async src="/scripts/app.js"></script>
 </head>
 
 <body>
@@ -94,33 +95,6 @@
             Copyright &copy; {{YEAR}} Jacek Kościesza v{{VERSION}}
         </footer>
     </div>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', async _ => {
-                // Service worker
-                try {
-                    let registration = await navigator.serviceWorker.register('/sw.js', { scope: '/' });
-                    console.info('Service Worker registration successful with scope: ', registration.scope);
-                } catch (ex) {
-                    console.error('Service Worker registration failed: ', ex);
-                }
-
-                // Offline
-                window.addEventListener('online',  updateOfflineStatus);
-                window.addEventListener('offline', updateOfflineStatus);
-            });
-
-            function updateOfflineStatus() {
-                const html = document.querySelector('html');
-
-                if (navigator.onLine) {
-                    html.removeAttribute('offline');
-                } else {
-                    html.setAttribute('offline', '');
-                }
-            }
-        }
-    </script>
 </body>
 
 </html>

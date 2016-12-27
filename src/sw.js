@@ -1,7 +1,7 @@
 'use strict';
 
 const NAME = 'JacekKosciesza';
-const VERSION = '0.2.0';
+const VERSION = '0.6.0';
 const CACHE_NAME = `${NAME}-v${VERSION}`;
 
 var ASSETS = [
