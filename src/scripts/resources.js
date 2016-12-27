@@ -28,16 +28,24 @@ class Resources {
 
     displayResources(resources) {
         let main = document.querySelector('main');
-        let ul = document.createElement('ul');
+
         for (let resource of resources) {
-            let a = document.createElement('a');
-            a.innerText = resource.title;
-            a.href = resource.url;
-            a.rel = 'nofollow';
-            let li = document.createElement('li');            
-            li.appendChild(a);
-            ul.appendChild(li);
-        }
-        main.appendChild(ul);
+            let section = document.createElement('section');
+            let h2 = document.createElement('h2');
+            h2.innerText = resource.title;
+            let ul = document.createElement('ul');
+            for (let link of resource.links) {
+                let a = document.createElement('a');
+                a.innerText = link.title;
+                a.href = link.url;
+                a.rel = 'nofollow';
+                let li = document.createElement('li');
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
+            section.appendChild(h2);
+            section.appendChild(ul);
+            main.appendChild(section);
+        }        
     }
 }
