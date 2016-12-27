@@ -13,7 +13,7 @@ class App {
     printVersion() {
         const html = document.querySelector('html');
         const version = html.getAttribute('version');
-        console.info(`%cJacek Kościesza v${version}`, 'color: #bada55;');
+        console.info(`Jacek Kościesza v${version}`);
     }
 
     async registerServiceWorker() {
