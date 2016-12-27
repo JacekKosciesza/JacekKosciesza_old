@@ -6,6 +6,8 @@ class App {
         this.updateOfflineStatus();
 
         this.navigation = new Navigation();
+        this.resources = new Resources();
+        this.resources.display();
     }
 
     printVersion() {
