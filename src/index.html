@@ -37,6 +37,20 @@
             background: hsl(0, 0%, 53%);
         }
 
+        .layout > header .skip-links {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: red;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+        }
+
+        .layout > header .skip-links:focus {
+            top: 0;
+        }
+
         .layout > main {
             grid-area: main;
         }
@@ -98,13 +112,14 @@
 <body>
     <div class="page layout">
         <header>
+            <a href="#main" class="skip-links">Skip to Content</a>
             <ul class="navigation">
                 <li><a href="/blog">Blog</a></li>
                 <li class="active"><a href="/resources">Resources</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
         </header>
-        <main></main>
+        <main id="main"></main>
         <aside></aside>
         <footer>
             Copyright &copy; {{YEAR}} Jacek Kościesza v{{VERSION}}
