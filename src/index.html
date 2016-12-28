@@ -76,10 +76,19 @@
         .navigation li.active {
             border-bottom: 2px solid red;
         }
+
+        .view {
+            padding: 20px;
+        }
     </style>
+
     <script defer src="/scripts/navigation.js"></script>
     <script defer src="/scripts/resources.js"></script>
     <script defer src="/scripts/app.js"></script>
+
+    <link rel="preload" href="/views/blog.html" as="document">
+    <link rel="preload" href="/views/resources.html" as="document">
+    <link rel="preload" href="/views/contact.html" as="document">
 </head>
 
 <body>

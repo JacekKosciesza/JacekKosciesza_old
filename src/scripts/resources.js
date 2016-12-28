@@ -1,51 +1,69 @@
 class Resources {
     constructor() {
         this._displayed = false;
+        this.PARTIAL_URL = '/views/resources.html';
+        this.DATA_URL = 'https://jacekkosciesza-659f4.firebaseio.com/resources.json';
     }
 
     async display() {
         if (this._displayed) return;
-        let resources = await this.getResources();
-        if (resources) {
-            requestAnimationFrame(_ => this.displayResources(resources));
+        let partialPromise = this.getResourcesPartial();
+        let resourcesPromise = this.getResourcesData();
+
+        let [partial, resources] = await Promise.all([partialPromise, resourcesPromise]);
+
+        if (partial && resources) {
+            requestAnimationFrame(_ => this.displayResources(partial, resources));
         }
     }
 
-    async getResources() {
-        let resources = [];
+    async getResourcesPartial() {
         try {
-            let response = await fetch('https://jacekkosciesza-659f4.firebaseio.com/resources.json');
-            resources = await response.json();
-            if (resources) {
-                console.log(`${resources.length} resource(s) fetched`);
-            }
+            let response = await fetch(this.PARTIAL_URL);
+            let text = await response.text();
+            const parser = new DOMParser();
+            let partial = parser.parseFromString(text, "text/html");
+            return partial;
         } catch (ex) {
             console.error(ex);
         }
-
-        return resources;
     }
 
-    displayResources(resources) {
-        let main = document.querySelector('main');
+    async getResourcesData() {
+        try {
+            let response = await fetch(this.DATA_URL);
+            let resources = await response.json();
+            if (resources) {
+                console.log(`${resources.length} resource(s) fetched`);
+            }
+            return resources;
+        } catch (ex) {
+            console.error(ex);
+        }
+    }
+
+    displayResources(partial, resources) {
+        let view = partial.querySelector('.view');
+
+        let resourcesTmpl = partial.querySelector('#resource-tmpl');
+        let linksTmpl = resourcesTmpl.content.querySelector('#link-tmpl');
 
         for (let resource of resources) {
-            let section = document.createElement('section');
-            let h2 = document.createElement('h2');
+            let section = resourcesTmpl.content.cloneNode(true);
+            let h2 = section.querySelector('h2');
             h2.innerText = resource.title;
-            let ul = document.createElement('ul');
+            let ul = section.querySelector('ul');
             for (let link of resource.links) {
-                let a = document.createElement('a');
+                let li = linksTmpl.content.cloneNode(true);
+                let a = li.querySelector('a');
                 a.innerText = link.title;
                 a.href = link.url;
-                a.rel = 'nofollow';
-                let li = document.createElement('li');
-                li.appendChild(a);
                 ul.appendChild(li);
             }
-            section.appendChild(h2);
-            section.appendChild(ul);
-            main.appendChild(section);
-        }        
+
+            view.appendChild(section);
+        }
+        let main = document.querySelector('main');
+        main.appendChild(view);
     }
 }

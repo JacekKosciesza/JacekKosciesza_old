@@ -6,7 +6,11 @@ const CACHE_NAME = `${NAME}-v${VERSION}`;
 
 var ASSETS = [
     '/',
+    '/views/blog.html',
+    '/views/resources.html',
+    '/views/contact.html',
     '/favicon.ico',
+    '/scripts/resources.js',
     '/scripts/navigation.js',
     '/scripts/app.js',
     '/images/icons/red-tie-icon-192x192.png',

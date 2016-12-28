@@ -1,0 +1,16 @@
+<article class="view">
+    <h1 tabindex="-1">Resources</h1>
+    
+    <!-- let resource of resources -->
+    <template id="resource-tmpl"> 
+        <h2>{{resource.title}}</h2>
+        <ul>
+            <!-- let link of resource.links -->
+            <template id="link-tmpl">
+                <li>
+                    <a href="{{link.url}}" rel="nofollow">{{link.title}}</a>
+                </li>
+            </template>
+        </ul>
+    </template>
+</article>
