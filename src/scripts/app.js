@@ -7,6 +7,7 @@ class App {
 
         this.router = new Router([
             ['blog', new Blog()],
+            ['notes', new Notes()],
             ['resources', new Resources()],
             ['contact', new Contact()]
         ]);

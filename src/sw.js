@@ -12,6 +12,7 @@ var ASSETS = [
     '/favicon.ico',
     '/scripts/view.js',
     '/scripts/blog.js',
+    '/scripts/notes.js',
     '/scripts/resources.js',
     '/scripts/contact.js',
     '/scripts/router.js',
