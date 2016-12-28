@@ -1,35 +1,22 @@
-class Resources {
+class Resources extends View {
     constructor() {
-        this._displayed = false;
-        this.PARTIAL_URL = '/views/resources.html';
+        super('/views/resources.html');
         this.DATA_URL = 'https://jacekkosciesza-659f4.firebaseio.com/resources.json';
     }
 
     async display() {
         if (this._displayed) return;
-        let partialPromise = this.getResourcesPartial();
-        let resourcesPromise = this.getResourcesData();
+        let partialPromise = this._getPartial();
+        let resourcesPromise = this._getData();
 
         let [partial, resources] = await Promise.all([partialPromise, resourcesPromise]);
 
         if (partial && resources) {
-            requestAnimationFrame(_ => this.displayResources(partial, resources));
+            requestAnimationFrame(_ => this._displayPartial(partial, resources));
         }
     }
 
-    async getResourcesPartial() {
-        try {
-            let response = await fetch(this.PARTIAL_URL);
-            let text = await response.text();
-            const parser = new DOMParser();
-            let partial = parser.parseFromString(text, "text/html");
-            return partial;
-        } catch (ex) {
-            console.error(ex);
-        }
-    }
-
-    async getResourcesData() {
+    async _getData() {
         try {
             let response = await fetch(this.DATA_URL);
             let resources = await response.json();
@@ -42,7 +29,7 @@ class Resources {
         }
     }
 
-    displayResources(partial, resources) {
+    _displayPartial(partial, resources) {
         let view = partial.querySelector('.view');
 
         let resourcesTmpl = partial.querySelector('#resource-tmpl');
@@ -64,6 +51,7 @@ class Resources {
             view.appendChild(section);
         }
         let main = document.querySelector('main');
+        main.innerHTML = '';
         main.appendChild(view);
     }
 }

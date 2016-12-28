@@ -5,9 +5,12 @@ class App {
         this.addEventListeners();
         this.updateOfflineStatus();
 
+        this.router = new Router([
+            ['blog', new Blog()],
+            ['resources', new Resources()],
+            ['contact', new Contact()]
+        ]);
         this.navigation = new Navigation();
-        this.resources = new Resources();
-        this.resources.display();
     }
 
     printVersion() {
