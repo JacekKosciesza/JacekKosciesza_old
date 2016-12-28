@@ -37,6 +37,7 @@ class Resources extends View {
 
         for (let resource of resources) {
             let section = resourcesTmpl.content.cloneNode(true);
+            section.querySelector('template').remove();
             let h2 = section.querySelector('h2');
             h2.innerText = resource.title;
             let ul = section.querySelector('ul');
