@@ -1,7 +1,7 @@
 class Router {
     constructor(routing) {
         this.routing = new Map(routing);
-        this.addEventListeners();        
+        this.addEventListeners();
     }
 
     addEventListeners() {
@@ -9,10 +9,20 @@ class Router {
         document.addEventListener('nav-request', this._onNavRequest);
     }
 
-    _onNavRequest(evt) {
-        let viewName = evt.detail;
-        window.history.pushState(null, viewName, `/${viewName}`);
+    async _onNavRequest(evt) {
+        let viewName = evt.detail.viewName;
+        //window.history.pushState(null, viewName, `/${viewName}`);
         let view = this.routing.get(viewName);
-        view.display();
+        await view.display();
+        this._manageFocus(evt.detail.isUserInteraction);
+    }
+
+    _manageFocus(isUserInteraction) {
+        // focus management
+        if (isUserInteraction) {
+            let main = document.querySelector('main');
+            let h1 = main.querySelector('h1[tabindex="-1"]');
+            h1.focus();
+        }
     }
 }

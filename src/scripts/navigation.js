@@ -2,7 +2,7 @@ class Navigation {
     constructor() {
         this.addEventListeners();
         let activeListItem = document.querySelector('.navigation li.active');
-        this._changeMenuItem(activeListItem.firstChild);
+        this._changeMenuItem(activeListItem.firstChild, false);
     }
 
     addEventListeners() {
@@ -19,7 +19,7 @@ class Navigation {
         this._changeMenuItem(a);
     }
 
-    _changeMenuItem(a) {
+    _changeMenuItem(a, isUserInteraction = true) {
         const li = a.parentElement;
 
         if (this.activeListItem === li) {
@@ -39,7 +39,7 @@ class Navigation {
         let href = a.getAttribute('href');
         let viewName = href.substring(1);
         const navRequestEvent = new CustomEvent('nav-request', {
-            detail: viewName
+            detail: {viewName, isUserInteraction}
         });
         document.dispatchEvent(navRequestEvent);
     }

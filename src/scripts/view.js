@@ -30,9 +30,5 @@ class View {
         let main = document.querySelector('main');
         main.innerHTML = '';
         main.appendChild(view);
-        
-        // focus management
-        let h1 = main.querySelector('h1[tabindex="-1"]');
-        h1.focus();
     }
 }
