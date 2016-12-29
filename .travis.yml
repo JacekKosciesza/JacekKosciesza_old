@@ -20,6 +20,6 @@ before_script:
 script:
     - npm run build
     - ./start-server.sh
-    - npm run lighthouse
+    #- npm run lighthouse
 after_success:
     - firebase deploy --token=${FIREBASE_API_TOKEN}

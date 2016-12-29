@@ -1,3 +1,17 @@
+:root {
+    /*colors*/
+    --primary-color: hsl(219, 79%, 66%);
+    --primary-color-dark: hsl(219, 79%, 60%);
+    --accent-color: red;
+    --background-color: #f1f1f1;
+    --aside-background-color: #f1f1f1;
+    --offline-primary-color: hsl(0, 0%, 53%);
+    --offline-primary-color-dark: hsl(0, 0%, 47%);
+    --footer-background: white;
+    /*layout*/
+    --aside-width: 200px;
+}
+
 html,
 body {
     margin: 0;
@@ -6,33 +20,32 @@ body {
 }
 
 body {
-    background: #f1f1f1;
+    background: var(--background-color);
     font-family: arial, sans-serif;
 }
 
 .layout {
     min-height: 100%;
     display: grid;
-    grid-template-columns: auto 200px;
+    grid-template-columns: auto var(--aside-width);
     grid-template-rows: auto 1fr auto;
     grid-template-areas: "header header" "main aside" "footer footer";
 }
 
 .layout>header {
     grid-area: header;
-    background: hsl(219, 79%, 66%);
-    /* cornflowerblue */
+    background: var(--primary-color);
 }
 
 html[offline] .layout>header {
-    background: hsl(0, 0%, 53%);
+    background: var(--offline-primary-color);
 }
 
 .layout>header .skip-links {
     position: absolute;
     top: -40px;
     left: 0;
-    background: red;
+    background: var(--accent-color);
     color: white;
     padding: 8px;
     z-index: 100;
@@ -48,11 +61,12 @@ html[offline] .layout>header {
 
 .layout>aside {
     grid-area: aside;
+    background: var(--aside-background-color);
 }
 
 .layout>footer {
     grid-area: footer;
-    background: white;
+    background: var(--footer-background);
     height: 32px;
     display: flex;
     align-items: center;
@@ -78,15 +92,15 @@ html[offline] .layout>header {
 }
 
 .navigation a:hover {
-    background: hsl(219, 79%, 60%);
+    background: var(--primary-color-dark);
 }
 
 html[offline] .navigation a:hover {
-    background: hsl(0, 0%, 47%);
+    background: var(--offline-primary-color-dark);
 }
 
 .navigation li.active {
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid var(--accent-color);
 }
 
 .view {
