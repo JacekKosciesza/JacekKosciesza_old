@@ -49,13 +49,43 @@
         .layout>header {
             grid-area: header;
             background: var(--primary-color);
+            display: flex;
+            justify-content: space-between;
         }
         
+        .logo {
+            display: flex;
+        }
+
+
+        .logotype {
+            display: inline-block;
+            color: white;
+            padding: 1em;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .layout>header section {
+            padding: 0.7em;
+            margin-left: 95px;
+        }
+
+        .layout>header button {
+            margin: 0;
+            padding: 5px 10px;
+            border: 1px solid white;
+            background: none;
+            color: white;
+            font-size: 1em;
+            border-radius: 4px;
+        }
+
         html[offline] .layout>header {
             background: var(--offline-primary-color);
         }
         
-        .layout>header .skip-links {
+        .skip-links {
             position: absolute;
             top: -40px;
             left: 0;
@@ -65,7 +95,7 @@
             z-index: 100;
         }
         
-        .layout>header .skip-links:focus {
+        .skip-links:focus {
             top: 0;
         }
         
@@ -90,6 +120,10 @@
             border-top: 1px solid #e2e2e2;
         }
         
+        nav {
+            /*margin-left: -120px;*/
+        }
+
         nav ul {
             list-style: none;
             margin: 0;
@@ -140,8 +174,11 @@
 
 <body>
     <div class="page layout">
+        <a href="#main" class="skip-links">Skip to Content</a>
         <header>
-            <a href="#main" class="skip-links">Skip to Content</a>
+            <div class="logo">
+                <span class="logotype">Jacek Kościesza</span>
+            </div>
             <nav>
                 <ul>
                     <li><a href="/blog">Blog</a></li>
@@ -150,6 +187,9 @@
                     <li><a href="/contact">Contact</a></li>
                 </ul>
             </nav>
+            <section>
+                <button>Login</button>
+            </section>
         </header>
         <main id="main"></main>
         <aside></aside>
