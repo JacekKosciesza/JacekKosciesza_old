@@ -90,7 +90,7 @@
             border-top: 1px solid #e2e2e2;
         }
         
-        .navigation {
+        nav ul {
             list-style: none;
             margin: 0;
             padding: 0;
@@ -98,27 +98,31 @@
             justify-content: center;
         }
         
-        .navigation a {
+        nav a {
             display: block;
             text-decoration: none;
             color: white;
             padding: 1em;
         }
         
-        .navigation a:hover {
+        nav a:hover {
             background: var(--primary-color-dark);
         }
         
-        html[offline] .navigation a:hover {
+        html[offline] nav a:hover {
             background: var(--offline-primary-color-dark);
         }
         
-        .navigation li.active {
+        nav li.active {
             border-bottom: 2px solid var(--accent-color);
         }
         
         .view {
             padding: 20px;
+        }
+
+        .view h1 {
+            margin-top: 0;
         }
     </style>
     <script defer src="/scripts/view.js"></script>
@@ -129,21 +133,23 @@
     <script defer src="/scripts/router.js"></script>
     <script defer src="/scripts/navigation.js"></script>
     <script defer src="/scripts/app.js"></script>
-    <link rel="preload" href="/views/blog.html" as="document">
+    <!--<link rel="preload" href="/views/blog.html" as="document">
     <link rel="preload" href="/views/resources.html" as="document">
-    <link rel="preload" href="/views/contact.html" as="document">
+    <link rel="preload" href="/views/contact.html" as="document">-->
 </head>
 
 <body>
     <div class="page layout">
         <header>
             <a href="#main" class="skip-links">Skip to Content</a>
-            <ul class="navigation">
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/notes">Notes</a></li>
-                <li class="active"><a href="/resources">Resources</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
+            <nav>
+                <ul>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/notes">Notes</a></li>
+                    <li class="active"><a href="/resources">Resources</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
         </header>
         <main id="main"></main>
         <aside></aside>

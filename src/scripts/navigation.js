@@ -1,13 +1,13 @@
 class Navigation {
     constructor() {
         this.addEventListeners();
-        let activeListItem = document.querySelector('.navigation li.active');
+        let activeListItem = document.querySelector('nav li.active');
         this._changeMenuItem(activeListItem.firstChild, false);
     }
 
     addEventListeners() {
         this._onLinkClicked = this._onLinkClicked.bind(this);
-        const links = Array.from(document.querySelectorAll('.navigation a'));
+        const links = Array.from(document.querySelectorAll('nav a'));
         links.forEach(link => {
             link.addEventListener('click', this._onLinkClicked);
         })

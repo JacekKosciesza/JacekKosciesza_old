@@ -48,11 +48,12 @@ class Resources extends View {
                 a.href = link.url;
                 ul.appendChild(li);
             }
-
-            view.appendChild(section);
+            let article = view.querySelector('article');
+            article.appendChild(section);
         }
         let main = document.querySelector('main');
         main.innerHTML = '';
+        view.querySelector('template').remove();
         main.appendChild(view);
     }
 }
