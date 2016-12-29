@@ -8,36 +8,40 @@
     <meta name="description" content="Personal website of Jacek Kościesza.">
     <meta content="/images/icons/red-tie-icon-512x512.png" itemprop="image">
     <meta name="author" content="Jacek Kościesza">
-
     <title>Jacek Kościesza | Personal Website</title>
-    
     <link rel="icon" href="favicon.ico">
     <link rel="manifest" href="/manifest.json">
     <style>
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             height: 100%;
         }
-
+        
+        body {
+            background: #f1f1f1;
+        }
+        
         .layout {
             min-height: 100%;
             display: grid;
             grid-template-columns: auto 200px;
             grid-template-rows: auto 1fr auto;
-            grid-template-areas: "header header" "main aside" "footer footer";                                
+            grid-template-areas: "header header" "main aside" "footer footer";
         }
-
-        .layout > header {
+        
+        .layout>header {
             grid-area: header;
-            background: hsl(219, 79%, 66%); /* cornflowerblue */
+            background: hsl(219, 79%, 66%);
+            /* cornflowerblue */
         }
-
-        html[offline] .layout > header {
+        
+        html[offline] .layout>header {
             background: hsl(0, 0%, 53%);
         }
-
-        .layout > header .skip-links {
+        
+        .layout>header .skip-links {
             position: absolute;
             top: -40px;
             left: 0;
@@ -46,56 +50,62 @@
             padding: 8px;
             z-index: 100;
         }
-
-        .layout > header .skip-links:focus {
+        
+        .layout>header .skip-links:focus {
             top: 0;
         }
-
-        .layout > main {
+        
+        .layout>main {
             grid-area: main;
         }
-
-        .layout > aside {
+        
+        .layout>aside {
             grid-area: aside;
         }
-
-        .layout > footer {
+        
+        .layout>footer {
             grid-area: footer;
-            text-align: center;
+            background: white;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75em;
+            font-family: cursive;
+            border-top: 1px solid #e2e2e2;
         }
-
-        .navigation  {
+        
+        .navigation {
             list-style: none;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
         }
-
+        
         .navigation a {
             display: block;
             text-decoration: none;
             color: white;
             padding: 1em;
         }
-
+        
         .navigation a:hover {
-            background:hsl(219, 79%, 60%);
+            background: hsl(219, 79%, 60%);
         }
-
-         html[offline] .navigation a:hover {
+        
+        html[offline] .navigation a:hover {
             background: hsl(0, 0%, 47%);
         }
-
+        
         .navigation li.active {
             border-bottom: 2px solid red;
         }
-
+        
         .view {
             padding: 20px;
         }
     </style>
-
     <script defer src="/scripts/view.js"></script>
     <script defer src="/scripts/blog.js"></script>
     <script defer src="/scripts/notes.js"></script>
@@ -104,7 +114,6 @@
     <script defer src="/scripts/router.js"></script>
     <script defer src="/scripts/navigation.js"></script>
     <script defer src="/scripts/app.js"></script>
-
     <link rel="preload" href="/views/blog.html" as="document">
     <link rel="preload" href="/views/resources.html" as="document">
     <link rel="preload" href="/views/contact.html" as="document">
