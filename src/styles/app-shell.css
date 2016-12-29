@@ -1,0 +1,94 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    background: #f1f1f1;
+    font-family: arial, sans-serif;
+}
+
+.layout {
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: auto 200px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "header header" "main aside" "footer footer";
+}
+
+.layout>header {
+    grid-area: header;
+    background: hsl(219, 79%, 66%);
+    /* cornflowerblue */
+}
+
+html[offline] .layout>header {
+    background: hsl(0, 0%, 53%);
+}
+
+.layout>header .skip-links {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: red;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.layout>header .skip-links:focus {
+    top: 0;
+}
+
+.layout>main {
+    grid-area: main;
+}
+
+.layout>aside {
+    grid-area: aside;
+}
+
+.layout>footer {
+    grid-area: footer;
+    background: white;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75em;
+    font-family: cursive;
+    border-top: 1px solid #e2e2e2;
+}
+
+.navigation {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 1em;
+}
+
+.navigation a:hover {
+    background: hsl(219, 79%, 60%);
+}
+
+html[offline] .navigation a:hover {
+    background: hsl(0, 0%, 47%);
+}
+
+.navigation li.active {
+    border-bottom: 2px solid red;
+}
+
+.view {
+    padding: 20px;
+}
