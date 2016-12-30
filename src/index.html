@@ -23,7 +23,7 @@
             --offline-primary-color-dark: hsl(0, 0%, 47%);
             --footer-background: white;
             /*layout*/
-            --aside-width: 200px;
+            --aside-width: 0;
         }
         
         html,
@@ -46,6 +46,28 @@
             grid-template-areas: "header header" "main aside" "footer footer";
         }
         
+        button.menu {
+            display: inline;
+            margin: 5px;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+        }
+        
+        svg {
+            pointer-events: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+            fill: white;
+        }
+        
+        header>nav,
+        header>section {
+            display: none;
+        }
+        
         .layout>header {
             grid-area: header;
             background: var(--primary-color);
@@ -53,25 +75,12 @@
             justify-content: space-between;
         }
         
-        .logo {
-            display: flex;
-        }
-
-
-        .logotype {
-            display: inline-block;
-            color: white;
-            padding: 1em;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
         .layout>header section {
             padding: 0.7em;
             margin-left: 95px;
         }
-
-        .layout>header button {
+        
+        button.login {
             margin: 0;
             padding: 5px 10px;
             border: 1px solid white;
@@ -80,23 +89,9 @@
             font-size: 1em;
             border-radius: 4px;
         }
-
+        
         html[offline] .layout>header {
             background: var(--offline-primary-color);
-        }
-        
-        .skip-links {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--accent-color);
-            color: white;
-            padding: 8px;
-            z-index: 100;
-        }
-        
-        .skip-links:focus {
-            top: 0;
         }
         
         .layout>main {
@@ -120,10 +115,32 @@
             border-top: 1px solid #e2e2e2;
         }
         
-        nav {
-            /*margin-left: -120px;*/
+        .skip-links {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent-color);
+            color: white;
+            padding: 8px;
+            z-index: 100;
         }
-
+        
+        .skip-links:focus {
+            top: 0;
+        }
+        
+        .logo {
+            display: flex;
+        }
+        
+        .logotype {
+            display: inline-block;
+            color: white;
+            padding: 1em;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        
         nav ul {
             list-style: none;
             margin: 0;
@@ -154,9 +171,22 @@
         .view {
             padding: 20px;
         }
-
+        
         .view h1 {
             margin-top: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .layout {
+                --aside-width: 200px;
+            }
+            header>nav,
+            header>section {
+                display: block;
+            }
+            button.menu {
+                display: none;
+            }
         }
     </style>
     <script defer src="/scripts/view.js"></script>
@@ -176,8 +206,13 @@
     <div class="page layout">
         <a href="#main" class="skip-links">Skip to Content</a>
         <header>
+            <button class="menu" title="Navigation menu" aria-label="Navigation menu">
+                <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet">
+                    <g id="menu"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></g>
+                </svg>
+            </button>
             <div class="logo">
-                <span class="logotype">Jacek&npsp;Kościesza</span>
+                <span class="logotype">Jacek&nbsp;Kościesza</span>
             </div>
             <nav>
                 <ul>
@@ -188,10 +223,10 @@
                 </ul>
             </nav>
             <section>
-                <button>Login</button>
+                <button class="login">Login</button>
             </section>
         </header>
-        <main id="main"></main>
+        <main id="main" role="main"></main>
         <aside></aside>
         <footer>
             Copyright &copy; {{YEAR}} Jacek Kościesza v{{VERSION}}
