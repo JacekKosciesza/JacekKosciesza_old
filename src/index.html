@@ -8,7 +8,7 @@
     <meta name="description" content="Personal website of Jacek Kościesza.">
     <meta content="/images/icons/red-tie-icon-512x512.png" itemprop="image">
     <meta name="author" content="Jacek Kościesza">
-    <title>Jacek Kościesza | Personal Website</title>
+    <title>Jacek Kościesza</title>
     <link rel="icon" href="favicon.ico">
     <link rel="manifest" href="/manifest.json">
     <style>
@@ -227,11 +227,28 @@
             </section>
         </header>
         <main id="main" role="main"></main>
-        <aside></aside>
+        <aside>
+            <jk-dialog></jk-dialog>
+        </aside>
         <footer>
             Copyright &copy; {{YEAR}} Jacek Kościesza v{{VERSION}}
         </footer>
     </div>
+    <script>
+        document.querySelector('button.login').addEventListener('click', _ => {
+            // lazy load dialog element
+            importHtml('/elements/dialog.html');
+        });
+        function importHtml(href) {
+            let isAlreadyImported = document.querySelector(`head > link[href="${href}"]`);
+            if (!isAlreadyImported) {
+                let link = document.createElement('link');
+                link.setAttribute('rel', 'import');
+                link.setAttribute('href', href);
+                document.head.appendChild(link);
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 {
   "name": "jacek-kosciesza",
   "homepage": "https://jacekkosciesza.com",
-  "version": "0.15.1",
+  "version": "0.16.0",
   "description": "Jacek Kościesza's personal website",
   "author": "Jacek Kościesza <jacek.kosciesza@gmail.com>",
   "keywords": [
@@ -13,13 +13,14 @@
   "scripts": {
     "serve": "http-server ./build -p 8080",
     "prebuild": "rimraf ./build ./validate && mkdir build validate",
-    "build": "npm-run-all html copy images scripts styles",
+    "build": "npm-run-all html copy images scripts styles elements",
     "postbuild": "npm run tokens",
     "tokens": "node tokens.js ./build/index.html ./build/humans.txt ./build/sw.js",
     "html": "html-minifier --input-dir ./src --output-dir ./build --collapse-whitespace --remove-comments --minify-css --file-ext html",
     "copy": "copyfiles -f ./src/sw.js ./src/favicon.ico ./src/manifest.json ./src/robots.txt ./src/humans.txt ./build",
     "scripts": "copyfiles -f ./src/scripts/*.js ./build/scripts",
     "styles": "copyfiles -f ./src/styles/*.css ./build/styles",
+    "elements": "copyfiles -f ./src/elements/* ./build/elements",
     "images": "imagemin ./src/images/* --out-dir=./build/images && imagemin ./src/images/icons/* --out-dir=./build/images/icons",
     "lighthouse": "lighthouse --output=json http://localhost:8080 --output-path=./validate/lighthouse.json && node lighthouse-check.js ./validate/lighthouse.json",
     "webpagetest": "webpagetest test https://jacekkosciesza.com --key %WEBPAGETEST_API_KEY% --poll > ./validate/webpagetest.json",

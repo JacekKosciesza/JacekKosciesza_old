@@ -18,6 +18,9 @@ var ASSETS = [
     '/scripts/router.js',
     '/scripts/navigation.js',
     '/scripts/app.js',
+    '/styles/blog.css',
+    '/styles/notes.css',
+    '/styles/contact.css',
     '/images/icons/red-tie-icon-192x192.png',
     '/images/icons/red-tie-icon-512x512.png'
 ];

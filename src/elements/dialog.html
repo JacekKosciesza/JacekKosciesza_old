@@ -1,0 +1,16 @@
+<template id="jk-dialog">
+    TODO: dialog
+</template>
+
+<script>
+    class Dialog extends HTMLElement {
+        constructor() {
+            super();
+            const doc = document.currentScript.ownerDocument;
+            const tmpl = doc.querySelector('#jk-dialog');
+            const shadowRoot = this.attachShadow({mode: 'open'});
+            shadowRoot.appendChild(tmpl.content.cloneNode(true));
+        }
+    };
+    customElements.define('jk-dialog', Dialog);
+</script>
