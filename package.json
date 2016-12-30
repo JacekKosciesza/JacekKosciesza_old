@@ -9,6 +9,7 @@
     "personal",
     "website"
   ],
+  "license": "MIT",
   "scripts": {
     "serve": "http-server ./build -p 8080",
     "prebuild": "rimraf ./build ./validate && mkdir build validate",

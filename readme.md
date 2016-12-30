@@ -4,6 +4,9 @@
 ## Goal
 Build the most performant personal PWA (Progressive Web App) with metablog using cutting-edge technologies from The Web Platform.
 
+## License
+Please see the LICENSE file.
+
 ## Roadmap
 
 - [x] Minimal HTML
