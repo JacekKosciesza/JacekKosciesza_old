@@ -156,7 +156,10 @@
             padding: 1em;
         }
         
-        nav a:hover, nav a:focus, header button:hover, header button:focus {
+        nav a:hover,
+        nav a:focus,
+        header button:hover,
+        header button:focus {
             background: var(--primary-color-dark);
         }
         
@@ -187,6 +190,10 @@
             button.menu {
                 display: none;
             }
+        }
+        
+        jk-dialog:not(:defined) {
+            display: none;
         }
     </style>
     <script defer src="/scripts/view.js"></script>
@@ -228,7 +235,11 @@
         </header>
         <main id="main" role="main"></main>
         <aside>
-            <jk-dialog></jk-dialog>
+            <jk-dialog>
+                <h1>Sign In</h1>
+                <button>Cancel</button>
+                <button>Sign In</button>
+            </jk-dialog>
         </aside>
         <footer>
             Copyright &copy; {{YEAR}} Jacek Kościesza v{{VERSION}}
@@ -239,6 +250,7 @@
             // lazy load dialog element
             importHtml('/elements/dialog.html');
         });
+
         function importHtml(href) {
             let isAlreadyImported = document.querySelector(`head > link[href="${href}"]`);
             if (!isAlreadyImported) {
