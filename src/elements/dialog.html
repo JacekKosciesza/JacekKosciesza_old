@@ -1,23 +1,60 @@
 <template id="jk-dialog">
     <style>
-        :host {
-            display: block;
+         :host {
+            display: none;
             background: white;
             padding: 15px;
+        }
+        
+         :host([opened]) {
+            display: block;
         }
     </style>
     <slot></slot>
 </template>
-
 <script>
     class Dialog extends HTMLElement {
+        static get is() {
+            return 'jk-dialog';
+        }
+
+        static get config() {
+            return {
+                properties: {
+                    opened: 'Boolean'
+                }
+            }
+        }
+
+        static get observedAttributes() {
+            return ['opened'];
+        }
+
+        get opened() {
+            return this.hasAttribute('opened');
+        }
+
+        set opened(value) {
+            if (value) {
+                this.setAttribute('opened', '');
+            } else {
+                this.removeAttribute('opened');
+            }
+        }
+
         constructor() {
             super();
             const doc = document.currentScript.ownerDocument;
             const tmpl = doc.querySelector('#jk-dialog');
-            const shadowRoot = this.attachShadow({mode: 'open'});
+            const shadowRoot = this.attachShadow({
+                mode: 'open'
+            });
             shadowRoot.appendChild(tmpl.content.cloneNode(true));
         }
+
+        attributeChangedCallback(propertyName, oldValue, newValue) {
+            if (propertyName === 'opened') {}
+        }
     };
-    customElements.define('jk-dialog', Dialog);
+    customElements.define(Dialog.is, Dialog);
 </script>

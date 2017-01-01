@@ -249,6 +249,8 @@
         document.querySelector('button.login').addEventListener('click', _ => {
             // lazy load dialog element
             importHtml('/elements/dialog.html');
+            let dialog = document.querySelector('jk-dialog');
+            dialog.setAttribute('opened', '');
         });
 
         function importHtml(href) {
