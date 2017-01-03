@@ -6,6 +6,7 @@ const CACHE_NAME = `${NAME}-v${VERSION}`;
 
 var ASSETS = [
     '/',
+    '/?homescreen=true',
     '/views/blog.html',
     '/views/resources.html',
     '/views/contact.html',

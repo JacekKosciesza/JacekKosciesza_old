@@ -4,20 +4,49 @@
     "description": "Personal website of Jacek Kościesza",
     "dir": "rtl",
     "lang": "en",
-    "start_url": "/",
+    "start_url": "/?homescreen=true",
     "display": "standalone",
     "background_color": "white",
     "theme_color": "white",
     "orientation": "portrait",
     "icons": [{
-        "src": "images/icons/red-tie-icon-192x192.png",
-        "sizes": "192x192",
-        "type": "image/png"
+        "src": "images/icons/jacek-kosciesza-48x48.jpg",
+        "sizes": "48x48",
+        "type": "image/jpeg"
     },
     {
-        "src": "images/icons/red-tie-icon-512x512.png",
+        "src": "images/icons/jacek-kosciesza-96x96.jpg",
+        "sizes": "96x96",
+        "type": "image/jpeg"
+    },
+    {
+        "src": "images/icons/jacek-kosciesza-128x128.jpg",
+        "sizes": "128x128",
+        "type": "image/jpeg"
+    },
+    {
+        "src": "images/icons/jacek-kosciesza-144x144.jpg",
+        "sizes": "144x144",
+        "type": "image/jpeg"
+    },
+    {
+        "src": "images/icons/jacek-kosciesza-192x192.jpg",
+        "sizes": "192x192",
+        "type": "image/jpeg"
+    },
+    {
+        "src": "images/icons/jacek-kosciesza-256x256.jpg",
+        "sizes": "256x256",
+        "type": "image/jpeg"
+    },
+    {
+        "src": "images/icons/jacek-kosciesza-384x384.jpg",
+        "sizes": "384x384",
+        "type": "image/jpeg"
+    },
+    {
+        "src": "images/icons/jacek-kosciesza-512x512.jpg",
         "sizes": "512x512",
-        "type": "image/png"
-    }
-    ]
+        "type": "image/jpeg"
+    }]
 }
