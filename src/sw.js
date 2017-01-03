@@ -22,8 +22,14 @@ var ASSETS = [
     '/styles/blog.css',
     '/styles/notes.css',
     '/styles/contact.css',
-    '/images/icons/red-tie-icon-192x192.png',
-    '/images/icons/red-tie-icon-512x512.png'
+    '/images/icons/jacek-kosciesza-48x48.jpg',
+    '/images/icons/jacek-kosciesza-96x96.jpg',
+    '/images/icons/jacek-kosciesza-128x128.jpg',
+    '/images/icons/jacek-kosciesza-144x144.jpg',
+    '/images/icons/jacek-kosciesza-192x192.jpg',
+    '/images/icons/jacek-kosciesza-256x256.jpg',
+    '/images/icons/jacek-kosciesza-384x384.jpg',
+    '/images/icons/jacek-kosciesza-512x512.jpg'
 ];
 
 self.oninstall = evt => evt.waitUntil(async function () {
