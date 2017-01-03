@@ -1,0 +1,27 @@
+<template id="jk-post">
+    <h1>{{post.title}}</h1>
+</template>
+<script>
+    class Post extends JK.Element {
+        static get is() {
+            return 'jk-post';
+        }
+
+        static get config() {
+            return {
+                properties: {
+                    post: 'Object'
+                }
+            }
+        }
+        
+        static get observedAttributes() {
+            return ['post'];
+        }
+
+        constructor() {
+            super();
+        }
+    }
+    customElements.define(Post.is, Post);
+</script>
