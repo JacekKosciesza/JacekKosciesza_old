@@ -44,12 +44,6 @@
 
         constructor() {
             super();
-            const doc = document.currentScript.ownerDocument;
-            const tmpl = doc.querySelector('#jk-dialog');
-            const shadowRoot = this.attachShadow({
-                mode: 'open'
-            });
-            shadowRoot.appendChild(tmpl.content.cloneNode(true));
         }
 
         attributeChangedCallback(propertyName, oldValue, newValue) {
