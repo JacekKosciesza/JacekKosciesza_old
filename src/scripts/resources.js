@@ -5,32 +5,58 @@ class Resources extends View {
     }
 
     async display() {
-        if (this._displayed) return;
         let partialPromise = this._getPartial();
-        let resourcesPromise = this._getData();
+        let dataFromCachedPromise = this._getDataFromCache();
+        let dataFromNetworkPromise = this._getDataFromNetwork();
 
-        let [partial, resources] = await Promise.all([partialPromise, resourcesPromise]);
+        // cache first
+        this._display(partialPromise, dataFromCachedPromise, false);
 
-        if (partial && resources) {
+        // then network
+        this._display(partialPromise, dataFromNetworkPromise, true);
+    }
+
+    async _display(partialPromise, dataPromise, isFromNetwork) {
+        let [partial, resources] = await Promise.all([partialPromise, dataPromise]);
+        if (partial && resources && !this._displayed) {
+            if (isFromNetwork) {
+                this._displayed = true;
+                console.log('Displaying resource(s) from network');
+            } else {
+                console.log('Displaying resource(s) from cache');
+            }
             requestAnimationFrame(_ => this._displayPartial(partial, resources));
         }
     }
 
-    async _getData() {
+    async _getDataFromCache() {
+        if ('caches' in window) {
+            let response = await caches.match(this.DATA_URL);
+            if (response) {
+                let resources = await response.json();
+                console.log(`${resources.length} resource(s) fetched from cache`);
+                return resources;
+            } else {
+                console.log(`No resource(s) in cache`);
+            }
+        }
+    }
+
+    async _getDataFromNetwork() {
         try {
             let response = await fetch(this.DATA_URL);
             let resources = await response.json();
             if (resources) {
-                console.log(`${resources.length} resource(s) fetched`);
+                console.log(`${resources.length} resource(s) fetched from network`);
             }
             return resources;
         } catch (ex) {
-            console.error(ex);
+            console.error(`Error fetching resource(s) from network`, ex);
         }
     }
 
     _displayPartial(partial, resources) {
-        let view = partial.querySelector('.view');
+        let view = partial.cloneNode(true).querySelector('.view');
 
         let resourcesTmpl = partial.querySelector('#resource-tmpl');
         let linksTmpl = resourcesTmpl.content.querySelector('#link-tmpl');

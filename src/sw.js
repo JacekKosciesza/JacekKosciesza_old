@@ -3,6 +3,8 @@
 const NAME = 'JacekKosciesza';
 const VERSION = '{{VERSION}}';
 const CACHE_NAME = `${NAME}-v${VERSION}`;
+const DATA_CACHE_NAME = `${NAME}-Data-v${VERSION}`;
+const DATA_URL = 'https://jacekkosciesza-659f4.firebaseio.com';
 
 var ASSETS = [
     '/',
@@ -23,9 +25,15 @@ var ASSETS = [
     '/styles/notes.css',
     '/styles/contact.css',
     '/images/icons/jacek-kosciesza-48x48.jpg',
+    '/images/icons/jacek-kosciesza-60x60.jpg',
+    '/images/icons/jacek-kosciesza-76x76.jpg',
     '/images/icons/jacek-kosciesza-96x96.jpg',
+    '/images/icons/jacek-kosciesza-120x120.jpg',
     '/images/icons/jacek-kosciesza-128x128.jpg',
     '/images/icons/jacek-kosciesza-144x144.jpg',
+    '/images/icons/jacek-kosciesza-152x152.jpg',
+    '/images/icons/jacek-kosciesza-167x167.jpg',
+    '/images/icons/jacek-kosciesza-180x180.jpg',
     '/images/icons/jacek-kosciesza-192x192.jpg',
     '/images/icons/jacek-kosciesza-256x256.jpg',
     '/images/icons/jacek-kosciesza-384x384.jpg',
@@ -64,16 +72,27 @@ self.onactivate = evt => {
 }
 
 self.onfetch = evt => {
-    evt.respondWith(
-        caches.match(evt.request)
-        .then(response => {
-            if (response) {
-                //console.debug(`SW (fetch): Cache hit '${evt.request.url}`);
-                return response;
-            }
+    if (evt.request.url.startsWith(DATA_URL)) {
+        evt.respondWith(
+            fetch(evt.request).then(function (response) {
+                return caches.open(DATA_CACHE_NAME).then(function (cache) {
+                    cache.put(evt.request.url, response.clone());
+                    return response;
+                })
+            })
+        );
+    } else {
+        evt.respondWith(
+            caches.match(evt.request)
+            .then(response => {
+                if (response) {
+                    //console.debug(`SW (fetch): Cache hit '${evt.request.url}`);
+                    return response;
+                }
 
-            //console.debug(`SW (fetch): Cache miss '${evt.request.url}`);
-            return fetch(evt.request);
-        })
-    );
+                //console.debug(`SW (fetch): Cache miss '${evt.request.url}`);
+                return fetch(evt.request);
+            })
+        );
+    }
 }

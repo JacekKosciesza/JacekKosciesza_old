@@ -19,6 +19,7 @@ class View {
             let text = await response.text();
             const parser = new DOMParser();
             let partial = parser.parseFromString(text, "text/html");
+            console.log(`Partial '${this.partialUrl}' fetched`);
             return partial;
         } catch (ex) {
             console.error(ex);
