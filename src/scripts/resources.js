@@ -9,7 +9,7 @@ class Resources extends View {
         let dataFromCachedPromise = this._getDataFromCache();
         let dataFromNetworkPromise = this._getDataFromNetwork();
 
-        // cache first
+        // offline (cache) first
         this._display(partialPromise, dataFromCachedPromise, false);
 
         // then network

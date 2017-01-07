@@ -1,0 +1,30 @@
+<template id="jk-blog">
+    <h1 tabindex="-1">Blog</h1>
+    <dom-repeat items="{{posts}}" as="{{post}}">
+        <jk-post post="{{post}}"></jk-post>
+    </dom-repeat>
+</template>
+<script>
+    class Blog extends JK.Element {
+        static get is() {
+            return 'jk-blog';
+        }
+
+        static get config() {
+            return {
+                properties: {
+                    posts: 'Array'
+                }
+            }
+        }
+
+        static get observedAttributes() {
+            return ['posts'];
+        }
+
+        constructor() {
+            super();
+        }
+    }
+    customElements.define(Blog.is, Blog);
+</script>

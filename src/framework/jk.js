@@ -17,7 +17,7 @@ let JK = (function () {
 
             // properties configuration
             this.bindings = new Map();
-            for (var [key, value] of Object.entries(this.constructor.config.properties)) {
+            for (let [key] of Object.entries(this.constructor.config.properties)) {
                 // create empty binding
                 this.bindings.set(key, []);
 
@@ -73,8 +73,7 @@ let JK = (function () {
                             console.log(`target=${target}, propertyKey=${propertyKey}, value=${value}`);
                             let bindings = this.bindings.get(attrName);
                             for (let binding of bindings) {
-                                if (binding.path === propertyKey)
-                                {
+                                if (binding.path === propertyKey) {
                                     binding.el.textContent = value;
                                 }
                             }
@@ -85,6 +84,10 @@ let JK = (function () {
                     return proxy;
                     break;
                 default:
+                    let bindings = this.bindings.get(attrName);
+                    for (let binding of bindings) {
+                        binding.el.textContent = value;
+                    }
                     return value;
             }
         }
