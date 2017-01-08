@@ -70,7 +70,7 @@ let JK = (function () {
                 case 'Object':
                     let proxy = new Proxy({}, {
                         set: function (target, propertyKey, value) {
-                            console.log(`target=${target}, propertyKey=${propertyKey}, value=${value}`);
+                            console.log(`Object proxy: target=${target}, propertyKey=${propertyKey}, value=${value}`);
                             let bindings = this.bindings.get(attrName);
                             for (let binding of bindings) {
                                 if (binding.path === propertyKey) {
@@ -82,7 +82,15 @@ let JK = (function () {
                     });
                     Object.assign(proxy, JSON.parse(value));
                     return proxy;
-                    break;
+                case 'Array':
+                    let proxy = new Proxy([], {
+                        set: function (target, propertyKey, value) {
+                            console.log(`Array proxy: target=${target}, propertyKey=${propertyKey}, value=${value}`);
+                            return Reflect.set(target, propertyKey, value);
+                        }.bind(this)
+                    });
+                    // TODO: initialize array
+                    return proxy;                    
                 default:
                     let bindings = this.bindings.get(attrName);
                     for (let binding of bindings) {
