@@ -26,11 +26,45 @@ class App {
                 let registration = await navigator.serviceWorker.register('/sw.js', {
                     scope: '/'
                 });
-                console.info('Service Worker registration successful with scope: ', registration.scope);
+                console.info('sw: service worker registration successful with scope: ', registration.scope);
+
+                if (!navigator.serviceWorker.controller) {
+                    console.info(`sw: page wasn't loaded via a service worker, so they're looking at the latest version`);
+                    return;
+                }
+
+                if (registration.waiting) {
+                    console.info(`sw: there's an updated worker already waiting`);
+                    console.log(`TODO: Toast: new version of this website is available. Refresh or Cancel`);
+                    // TODO: Toast
+                    return;
+                }
+
+                if (registration.installing) {
+                    console.info(`sw: there's an updated worker installing, tracking it...`);
+                    this.trackServiceWorkerInstalling(registration.installing);
+                    return;
+
+                }
+
+                console.log('sw: listen for new installing workers arriving');
+                registration.addEventListener('updatefound', _ => {
+                    console.log('sw: new installing workers arrived, tracking it...');
+                    this.trackServiceWorkerInstalling(registration.installing);
+                });
             } catch (ex) {
-                console.error('Service Worker registration failed: ', ex);
+                console.error('sw: service worker registration failed: ', ex);
             }
         }
+    }
+
+    trackServiceWorkerInstalling(worker) {
+        worker.addEventListener('statechange', _ => {
+            if (worker.state === 'installed') {
+                console.log(`TODO: Toast: new version of this website is available. Refresh or Cancel`);
+                // TODO: Toast
+            }
+        });
     }
 
     addEventListeners() {

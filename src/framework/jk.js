@@ -68,29 +68,33 @@ let JK = (function () {
             let self = this;
             switch (type) {
                 case 'Object':
-                    let proxy = new Proxy({}, {
-                        set: function (target, propertyKey, value) {
-                            console.log(`Object proxy: target=${target}, propertyKey=${propertyKey}, value=${value}`);
-                            let bindings = this.bindings.get(attrName);
-                            for (let binding of bindings) {
-                                if (binding.path === propertyKey) {
-                                    binding.el.textContent = value;
+                    {
+                        let proxy = new Proxy({}, {
+                            set: function (target, propertyKey, value) {
+                                console.log(`Object proxy: target=${target}, propertyKey=${propertyKey}, value=${value}`);
+                                let bindings = this.bindings.get(attrName);
+                                for (let binding of bindings) {
+                                    if (binding.path === propertyKey) {
+                                        binding.el.textContent = value;
+                                    }
                                 }
-                            }
-                            return Reflect.set(target, propertyKey, value);
-                        }.bind(this)
-                    });
-                    Object.assign(proxy, JSON.parse(value));
-                    return proxy;
+                                return Reflect.set(target, propertyKey, value);
+                            }.bind(this)
+                        });
+                        Object.assign(proxy, JSON.parse(value));
+                        return proxy;
+                    }
                 case 'Array':
-                    let proxy = new Proxy([], {
-                        set: function (target, propertyKey, value) {
-                            console.log(`Array proxy: target=${target}, propertyKey=${propertyKey}, value=${value}`);
-                            return Reflect.set(target, propertyKey, value);
-                        }.bind(this)
-                    });
-                    // TODO: initialize array
-                    return proxy;                    
+                    {
+                        let proxy = new Proxy([], {
+                            set: function (target, propertyKey, value) {
+                                console.log(`Array proxy: target=${target}, propertyKey=${propertyKey}, value=${value}`);
+                                return Reflect.set(target, propertyKey, value);
+                            }.bind(this)
+                        });
+                        // TODO: initialize array
+                        return proxy;
+                    }
                 default:
                     let bindings = this.bindings.get(attrName);
                     for (let binding of bindings) {

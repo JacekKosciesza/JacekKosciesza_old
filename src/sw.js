@@ -6,6 +6,8 @@ const CACHE_NAME = `${NAME}-v${VERSION}`;
 const DATA_CACHE_NAME = `${NAME}-Data-v${VERSION}`;
 const DATA_URL = 'https://jacekkosciesza-659f4.firebaseio.com';
 
+console.log(`Service Worker v${VERSION}`);
+
 var ASSETS = [
     '/',
     '/?homescreen=true',

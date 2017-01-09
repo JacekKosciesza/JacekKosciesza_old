@@ -1,0 +1,27 @@
+<template id="jk-toast">
+    <h1>Toast</h1>
+</template>
+<script>
+    class Toast extends JK.Element {
+        static get is() {
+            return 'jk-toast';
+        }
+
+        static get config() {
+            return {
+                properties: {
+                    showed: 'Boolean'
+                }
+            }
+        }
+
+        static get observedAttributes() {
+            return ['showed'];
+        }
+
+        constructor() {
+            super();
+        }
+    }
+    customElements.define(Toast.is, Toast);
+</script>
