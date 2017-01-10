@@ -22,6 +22,10 @@ class App {
 
     async registerServiceWorker() {
         if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.addEventListener('controllerchange', _ => {
+                window.location.reload();
+            });
+
             try {
                 let registration = await navigator.serviceWorker.register('/sw.js', {
                     scope: '/'
@@ -35,8 +39,7 @@ class App {
 
                 if (registration.waiting) {
                     console.info(`sw: there's an updated worker already waiting`);
-                    console.log(`TODO: Toast: new version of this website is available. Refresh or Cancel`);
-                    // TODO: Toast
+                    this._updateReady(registration.waiting);
                     return;
                 }
 
@@ -61,10 +64,18 @@ class App {
     trackServiceWorkerInstalling(worker) {
         worker.addEventListener('statechange', _ => {
             if (worker.state === 'installed') {
-                console.log(`TODO: Toast: new version of this website is available. Refresh or Cancel`);
-                // TODO: Toast
+                this._updateReady(worker);
             }
         });
+    }
+
+    _updateReady(worker) {
+        var result = confirm("New version available. Click OK to refresh.");
+        if (result === true) {
+            worker.postMessage({
+                action: 'skipWaiting'
+            });
+        }
     }
 
     addEventListeners() {

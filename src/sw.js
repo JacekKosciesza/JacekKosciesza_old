@@ -44,9 +44,9 @@ var ASSETS = [
 
 self.oninstall = evt => evt.waitUntil(async function () {
     const cache = await caches.open(CACHE_NAME);
-    await cache.addAll(ASSETS);
+    return await cache.addAll(ASSETS);
 
-    return self.skipWaiting();
+    //return self.skipWaiting();
 }());
 
 self.onactivate = evt => {
@@ -70,7 +70,7 @@ self.onactivate = evt => {
         })
     );
 
-    self.clients.claim(); // take care of all opened tabs
+    //self.clients.claim(); // take care of all opened tabs
 }
 
 self.onfetch = evt => {
@@ -98,3 +98,9 @@ self.onfetch = evt => {
         );
     }
 }
+
+self.addEventListener('message', function(event) {
+  if (event.data.action === 'skipWaiting') {
+    self.skipWaiting();
+  }
+});
