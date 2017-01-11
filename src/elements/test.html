@@ -3,6 +3,7 @@
     <div>{{bool1}}: <span bind>{{bool1}}</span></div>
     <div>{{str1}}: <span bind>{{str1}}</span></div>
     <div>{{num1}}: <span bind>{{num1}}</span></div>
+    <div>{{date1}}: <span bind>{{date1}}</span></div>
 </template>
 <script>
     class Test extends JK.Element {
@@ -16,17 +17,20 @@
                     obj1: 'Object',
                     bool1: 'Boolean',
                     str1: 'String',
-                    num1: 'Number'
+                    num1: 'Number',
+                    date1: 'Date'
                 }
             }
         }
         
         static get observedAttributes() {
-            return ['obj1', 'bool1', 'str1', 'num1'];
+            return ['obj1', 'bool1', 'str1', 'num1', 'date1'];
         }
 
         constructor() {
             super();
+            this.date1 = new Date();
+            setInterval(_ => this.date1 = new Date(), 1000);
         }
     }
     customElements.define(Test.is, Test);

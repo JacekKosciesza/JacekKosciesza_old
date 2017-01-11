@@ -12,6 +12,7 @@
   "license": "MIT",
   "scripts": {
     "serve": "http-server ./build -p 8080",
+    "jk": "node build.js",
     "prebuild": "rimraf ./build ./validate && mkdir build validate",
     "build": "npm-run-all html copy images scripts styles framework elements",
     "postbuild": "npm run tokens",
@@ -19,7 +20,7 @@
     "html": "html-minifier --input-dir ./src --output-dir ./build --collapse-whitespace --remove-comments --minify-css --file-ext html",
     "copy": "copyfiles -f ./src/sw.js ./src/favicon.ico ./src/manifest.json ./src/robots.txt ./src/humans.txt ./build",
     "scripts": "copyfiles -f ./src/scripts/*.js ./build/scripts",
-    "framework": "copyfiles -f ./src/framework/*.js ./build/framework",    
+    "framework": "copyfiles -f ./src/framework/*.js ./build/framework",
     "styles": "copyfiles -f ./src/styles/*.css ./build/styles",
     "elements": "copyfiles -f ./src/elements/* ./build/elements",
     "images": "imagemin ./src/images/* --out-dir=./build/images && imagemin ./src/images/icons/* --out-dir=./build/images/icons",
@@ -39,12 +40,18 @@
     "copyfiles": "^1.0.0",
     "eslint": "^3.12.2",
     "firebase-tools": "^3.2.1",
+    "glob": "^7.1.1",
+    "hashmark": "^4.1.0",
     "html-minifier": "^3.2.3",
     "http-server": "^0.9.0",
     "imagemin-cli": "^3.0.0",
     "lighthouse": "^1.3.2",
     "npm-run-all": "^3.1.2",
     "rimraf": "^2.5.4",
+    "watch": "^1.0.1",
     "webpagetest": "^0.3.4"
+  },
+  "dependencies": {
+    "idb": "^2.0.0"
   }
 }
