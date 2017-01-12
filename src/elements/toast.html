@@ -1,5 +1,27 @@
 <template id="jk-toast">
-    <h1>Toast</h1>
+    <style>
+         :host {
+            display: none;
+            background: black;
+            padding: 5px;
+            color: white;
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+        }
+        
+        :host([showed]) {
+            display: flex;
+        }
+
+        ::slotted(button) {
+            margin-left: 10px;
+            border: none;
+            background:none;
+            color: red;
+        }
+    </style>
+    <slot></slot>
 </template>
 <script>
     class Toast extends JK.Element {

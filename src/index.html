@@ -265,6 +265,7 @@
     <!--<link rel="preload" href="/views/blog.html" as="document">
     <link rel="preload" href="/views/resources.html" as="document">
     <link rel="preload" href="/views/contact.html" as="document">-->
+    <link rel="import" href="/elements/toast.html"> <!--TODO: lazyload it-->
 </head>
 
 <body>
@@ -308,6 +309,11 @@
             <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
         </svg>
     </div>
+    <jk-toast class="refresh">
+        <p>New version available</p>
+        <button>Refresh</button>
+        <button>Cancel</button>
+    </jk-toast>
     <script>
         document.querySelector('button.login').addEventListener('click', _ => {
             // lazy load dialog element
