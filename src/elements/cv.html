@@ -1,0 +1,17 @@
+<template id="jk-cv">
+    <article>
+        <h1>Jacek Kościesza</h1>
+    </article>
+</template>
+<script>
+    class CV extends JK.Element {
+        static get is() {
+            return 'jk-cv';
+        }
+        
+        constructor() {
+            super();
+        }
+    }
+    customElements.define(CV.is, CV);
+</script>
