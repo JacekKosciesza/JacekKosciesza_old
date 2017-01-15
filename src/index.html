@@ -44,7 +44,7 @@
         
         body {
             background: var(--background-color);
-            font-family: arial, sans-serif;
+            font-family: roboto, arial, sans-serif;
         }
         
         .layout {
@@ -311,26 +311,16 @@
     </div>
     <jk-toast showed class="refresh">
         <p>New version available</p>
-        <button>Refresh</button>
-        <button>Cancel</button>
+        <button ok>Refresh</button>
+        <button cancel>Cancel</button>
     </jk-toast>
     <script>
         document.querySelector('button.login').addEventListener('click', _ => {
             // lazy load dialog element
-            importHtml('/elements/dialog.html');
+            JK.importHtml('/elements/dialog.html');
             let dialog = document.querySelector('jk-dialog');
             dialog.setAttribute('opened', '');
         });
-
-        function importHtml(href) {
-            let isAlreadyImported = document.querySelector(`head > link[href="${href}"]`);
-            if (!isAlreadyImported) {
-                let link = document.createElement('link');
-                link.setAttribute('rel', 'import');
-                link.setAttribute('href', href);
-                document.head.appendChild(link);
-            }
-        }
     </script>
 </body>
 

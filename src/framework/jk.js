@@ -3,7 +3,7 @@
 let JK = (function () {
     let jk = {};
 
-    jk.Element = class extends HTMLElement {
+    class JKElement extends HTMLElement {
         constructor() {
             super();
 
@@ -104,6 +104,20 @@ let JK = (function () {
             }
         }
     }
+
+    function importHtml(href) {
+        let isAlreadyImported = document.querySelector(`head > link[href="${href}"]`);
+        if (!isAlreadyImported) {
+            let link = document.createElement('link');
+            link.setAttribute('rel', 'import');
+            link.setAttribute('href', href);
+            document.head.appendChild(link);
+        }
+    }
+
+    // public API
+    jk.Element = JKElement;
+    jk.importHtml = importHtml;
 
     return jk;
 })();
