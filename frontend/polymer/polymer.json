@@ -2,10 +2,10 @@
   "entrypoint": "index.html",
   "shell": "src/jacek-kosciesza.html",
   "fragments": [
-    "src/my-view1.html",
-    "src/my-view2.html",
-    "src/my-view3.html",
-    "src/my-view404.html"
+    "src/jk-blog.html",
+    "src/jk-notes.html",
+    "src/jk-resources.html",
+    "src/jk-view404.html"
   ],
   "sourceGlobs": [
     "src/**/*",
