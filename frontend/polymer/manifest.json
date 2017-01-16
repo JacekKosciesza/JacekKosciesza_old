@@ -1,20 +1,22 @@
 {
-  "name": "My App",
-  "short_name": "My App",
-  "start_url": "/?homescreen=1",
-  "display": "standalone",
-  "theme_color": "#3f51b5",
-  "background_color": "#3f51b5",
-  "icons": [
-    {
-      "src": "images/manifest/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
+    "name": "Jacek Kościesza",
+    "short_name": "JK",
+    "description": "Personal website of Jacek Kościesza",
+    "dir": "rtl",
+    "lang": "en",
+    "start_url": "/?homescreen=true",
+    "display": "standalone",
+    "background_color": "white",
+    "theme_color": "white",
+    "orientation": "portrait",
+    "icons": [{
+        "src": "images/manifest/jacek-kosciesza-192x192.jpg",
+        "sizes": "192x192",
+        "type": "image/jpeg"
     },
     {
-      "src": "images/manifest/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+        "src": "images/manifest/jacek-kosciesza-512x512.jpg",
+        "sizes": "512x512",
+        "type": "image/jpeg"
+    }]
 }
