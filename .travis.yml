@@ -6,6 +6,8 @@ dist: trusty
 branches:
   only:
     - master
+before_install:
+    - cd ./frontend/platform
 install:
     - npm install
 before_script:

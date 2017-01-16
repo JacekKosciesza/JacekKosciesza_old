@@ -1,6 +1,1 @@
-/node_modules
-/build
-/validate
 .vscode
-*.log
-npm-debug.log*
