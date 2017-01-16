@@ -60,6 +60,7 @@
       <app-drawer id="drawer">
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+          <a name="home" href="/">Home</a>
           <a name="blog" href="/blog">Blog</a>
           <a name="notes" href="/notes">Notes</a>
           <a name="resources" href="/resources">Resources</a>
@@ -82,7 +83,8 @@
             attr-for-selected="name"
             fallback-selection="view404"
             role="main">
-          <jk-blog name="blog"></jk-blog>
+          <jk-home name="home"></jk-home>
+          <jk-blog name="blog" posts='[{"title":"Post 1"}, {"title":"Post 2"}]'></jk-blog>
           <jk-notes name="notes"></jk-notes>
           <jk-resources name="resources"></jk-resources>
           <jk-contact name="contact"></jk-contact>
@@ -109,7 +111,7 @@
       ],
 
       _routePageChanged: function(page) {
-        this.page = page || 'blog';
+        this.page = page || 'home';
 
         if (!this.$.drawer.persistent) {
           this.$.drawer.close();

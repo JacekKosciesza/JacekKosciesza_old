@@ -1,0 +1,43 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="shared-styles.html">
+<dom-module id="jk-home">
+    <template>
+        <style include="shared-styles">
+             :host {
+                display: block;
+                padding: 15px;
+            }
+            paper-card {
+                margin: 10px;
+                max-width: 200px;
+            }
+        </style>
+        <paper-card>
+            <div class="card-content">
+                <a href="https://platform.jacekkosciesza.com">Platform</a>
+            </div>
+        </paper-card>
+        <paper-card image="/images/polymer-logo.svg">
+            <div class="card-content">
+                <a href="https://polymer.jacekkosciesza.com">Polymer</a>
+            </div>
+        </paper-card>
+        <paper-card image="/images/angular-logo.svg">
+            <div class="card-content">
+                <a href="https://angular.jacekkosciesza.com">Angular</a>
+            </div>
+        </paper-card>
+        <paper-card image="/images/react-logo.svg">
+            <div class="card-content">
+                <a href="https://react.jacekkosciesza.com">React</a>
+            </div>
+        </paper-card>
+    </template>
+    <script>
+        Polymer({
+            is: 'jk-home'
+        });
+    </script>
+</dom-module>

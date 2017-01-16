@@ -1,24 +1,28 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="shared-styles.html">
-
+<link rel="import" href="jk-post.html">
 <dom-module id="jk-blog">
   <template>
     <style include="shared-styles">
-      :host {
+       :host {
         display: block;
-
         padding: 10px;
       }
     </style>
-
     <div class="card">
       <h1>Blog</h1>
+      <template is="dom-repeat" items="[[posts]]" as="post">
+        <jk-post post="[[post]]"></jk-post>
+      </template>
     </div>
   </template>
-
   <script>
     Polymer({
       is: 'jk-blog',
+
+      properties: {
+        posts: Array
+      }
     });
   </script>
 </dom-module>

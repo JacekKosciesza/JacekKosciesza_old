@@ -1,0 +1,21 @@
+<dom-module id="jk-post">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block;
+            }
+        </style>
+        <h1>[[post.title]]</h1>     
+    </template>
+    <script>
+        Polymer({
+            is: 'jk-post',
+
+            properties: {
+                post: {
+                    type: Object
+                }
+            }
+        });
+    </script>
+</dom-module>
