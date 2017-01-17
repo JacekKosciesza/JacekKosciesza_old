@@ -105,6 +105,27 @@ let JK = (function () {
         }
     }
 
+    class DomRepeat extends HTMLElement {
+        static get is() {
+            return 'dom-repeat';
+        }
+
+        get items() {
+            return this.getAttribute('items');
+        }
+
+        get as() {
+            return this.getAttribute('as');
+        }
+
+        constructor() {
+            super();
+            let shadowRoot = this.attachShadow({mode:'open'});
+            shadowRoot.innerHTML = '<template><slot><slot><template>';
+        }
+    }
+    customElements.define(DomRepeat.is, DomRepeat);
+
     function importHtml(href) {
         let isAlreadyImported = document.querySelector(`head > link[href="${href}"]`);
         if (!isAlreadyImported) {

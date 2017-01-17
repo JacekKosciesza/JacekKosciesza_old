@@ -1,11 +1,12 @@
 <template id="jk-blog">
     <h1 tabindex="-1">Blog</h1>
     <dom-repeat items="{{posts}}" as="{{post}}">
-        <jk-post post="{{post}}"></jk-post>
+        <!--<jk-post post="{{post}}"></jk-post>-->
+        <h1>{{post.title}}</h1>
     </dom-repeat>
 </template>
 <script>
-    class Blog extends JK.Element {
+    class Blog2 extends JK.Element {
         static get is() {
             return 'jk-blog';
         }
@@ -26,5 +27,5 @@
             super();
         }
     }
-    customElements.define(Blog.is, Blog);
+    customElements.define(Blog2.is, Blog2);
 </script>
