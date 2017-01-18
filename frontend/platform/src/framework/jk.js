@@ -17,19 +17,21 @@ let JK = (function () {
 
             // properties configuration
             this.bindings = new Map();
-            for (let [key] of Object.entries(this.constructor.config.properties)) {
-                // create empty binding
-                this.bindings.set(key, []);
+            if (this.constructor.config && this.constructor.config.properties) {
+                for (let [key] of Object.entries(this.constructor.config.properties)) {
+                    // create empty binding
+                    this.bindings.set(key, []);
 
-                // create getter and setter
-                Reflect.defineProperty(this, key, {
-                    get: function () {
-                        return this[`_${key}`];
-                    },
-                    set: function (value) {
-                        this[`_${key}`] = this._setProperty(key, value);
-                    }
-                });
+                    // create getter and setter
+                    Reflect.defineProperty(this, key, {
+                        get: function () {
+                            return this[`_${key}`];
+                        },
+                        set: function (value) {
+                            this[`_${key}`] = this._setProperty(key, value);
+                        }
+                    });
+                }
             }
 
             // TODO: rewrite is shitty, quick, dirty and not finished experimentation
@@ -69,6 +71,7 @@ let JK = (function () {
             switch (type) {
                 case 'Object':
                     {
+                        // create poxy
                         let proxy = new Proxy({}, {
                             set: function (target, propertyKey, value) {
                                 console.log(`Object proxy: target=${target}, propertyKey=${propertyKey}, value=${value}`);
@@ -81,18 +84,23 @@ let JK = (function () {
                                 return Reflect.set(target, propertyKey, value);
                             }.bind(this)
                         });
+                        // initialize object
                         Object.assign(proxy, JSON.parse(value));
                         return proxy;
                     }
                 case 'Array':
                     {
+                        // create proxy
                         let proxy = new Proxy([], {
                             set: function (target, propertyKey, value) {
                                 console.log(`Array proxy: target=${target}, propertyKey=${propertyKey}, value=${value}`);
                                 return Reflect.set(target, propertyKey, value);
                             }.bind(this)
                         });
-                        // TODO: initialize array
+                        // initialize array
+                        for (let item of JSON.parse(value)) {
+                            proxy.push(item);
+                        }
                         return proxy;
                     }
                 default:
@@ -120,7 +128,9 @@ let JK = (function () {
 
         constructor() {
             super();
-            let shadowRoot = this.attachShadow({mode:'open'});
+            let shadowRoot = this.attachShadow({
+                mode: 'open'
+            });
             shadowRoot.innerHTML = '<template><slot><slot><template>';
         }
     }

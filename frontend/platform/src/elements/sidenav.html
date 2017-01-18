@@ -1,0 +1,36 @@
+<template id="jk-sidenav">
+    <h1>Sidenav</h1>
+    <style>
+         :host {
+            display: block;
+            width: 300px;
+            height: 100%;
+            position: absolute;
+            transform: translateX(-300px);
+            transition: transform 0.3s ease;
+            background: #fff;
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+         :host(opened) {
+            transform: translateX(0);
+        }
+    </style>
+</template>
+<script>
+    class Sidenav extends JK.Element {
+        static get is() {
+            return 'jk-sidenav';
+        }
+
+        static get observedAttributes() {
+            return ['opened'];
+        }
+
+        constructor() {
+            super();
+            console.log('jk-sidenav constructor');
+        }
+    }
+    customElements.define(Sidenav.is, Sidenav);
+</script>
