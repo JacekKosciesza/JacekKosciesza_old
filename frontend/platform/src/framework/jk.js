@@ -15,7 +15,11 @@ let JK = (function () {
             });
             shadowRoot.appendChild(tmpl.content.cloneNode(true));
 
-            // properties configuration
+            this.configureProperties();
+            this.configureBindings();
+        }
+
+        configureProperties() {
             this.bindings = new Map();
             if (this.constructor.config && this.constructor.config.properties) {
                 for (let [key] of Object.entries(this.constructor.config.properties)) {
@@ -33,21 +37,52 @@ let JK = (function () {
                     });
                 }
             }
+        }
 
-            // TODO: rewrite is shitty, quick, dirty and not finished experimentation
-            let elementsWithBinding = Array.from(this.shadowRoot.querySelectorAll('[bind]'));
-            for (let el of elementsWithBinding) {
-                console.log(el);
-                let match = el.textContent.match(/{{(.*)}}/);
-                if (match) {
-                    let bindingPath = match[1];
-                    console.log(`textContent = ${bindingPath}`);
-                    let propertyName = bindingPath.split('.')[0];
-                    this.bindings.get(propertyName).push({
-                        el,
-                        path: bindingPath.substring(bindingPath.indexOf('.') + 1)
-                    });
-                }
+        configureBindings() {
+            this._walkTree();
+        }
+
+        _walkTree() {
+            var walker = document.createTreeWalker(
+                this.shadowRoot,
+                NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT,
+                function (node) {
+                    if (node.nodeType == Node.TEXT_NODE) {
+                        let binding = node.textContent.match(/{{(.*)}}/);
+                        if (binding) {
+                            let path = binding[1];
+                            let property = path.split('.')[0];
+                            this.bindings.get(property).push({
+                                node,
+                                path: path.substring(path.indexOf('.') + 1)
+                            });
+                            return NodeFilter.FILTER_ACCEPT;
+                        } else {
+                            return NodeFilter.FILTER_SKIP;
+                        }
+                    }
+
+                    if (node.nodeType == Node.ELEMENT_NODE) {
+                        if (node.attributes.length) {
+                            for (let attribute of node.attributes) {
+                                return isBinding(attribute.textContent) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+                            }
+                        }
+                    }
+                    return NodeFilter.FILTER_SKIP;
+                }.bind(this),
+                false);
+
+            function isBinding(text) {
+                var re = new RegExp();
+                re.compile("^{{(.*)}}$");
+
+                return text.match(re);
+            }
+
+            while (walker.nextNode()) {
+                console.log(walker.currentNode);
             }
         }
 
@@ -78,7 +113,7 @@ let JK = (function () {
                                 let bindings = this.bindings.get(attrName);
                                 for (let binding of bindings) {
                                     if (binding.path === propertyKey) {
-                                        binding.el.textContent = value;
+                                        binding.node.textContent = value;
                                     }
                                 }
                                 return Reflect.set(target, propertyKey, value);
@@ -106,7 +141,7 @@ let JK = (function () {
                 default:
                     let bindings = this.bindings.get(attrName);
                     for (let binding of bindings) {
-                        binding.el.textContent = value;
+                        binding.node.textContent = value;
                     }
                     return value;
             }
