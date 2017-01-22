@@ -4,6 +4,12 @@
     <div>str1: <span>{{str1}}</span></div>
     <div>num1: <span>{{num1}}</span></div>
     <div>date1: <time>{{date1}}</time></div>
+    <div>attr1 <span attr1="{{str1}}">attr1</span></div>
+    <style>
+        [attr1="str1"] {
+            color: green;
+        }
+    </style>
 </template>
 <script>
     class Test extends JK.Element {

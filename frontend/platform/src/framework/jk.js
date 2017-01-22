@@ -6,17 +6,22 @@ let JK = (function () {
     class JKElement extends HTMLElement {
         constructor() {
             super();
+            
+            this.attachShadowRootWithTemplate();
+            this.configureProperties();
+            this.configureBindings();
+        }
 
-            // attach shadow root with template
-            const doc = document.currentScript.ownerDocument;
-            const tmpl = doc.querySelector(`#${this.constructor.is}`);
+        attachShadowRootWithTemplate() {
+            
             const shadowRoot = this.attachShadow({
                 mode: 'open'
             });
-            shadowRoot.appendChild(tmpl.content.cloneNode(true));
-
-            this.configureProperties();
-            this.configureBindings();
+            const doc = document.currentScript.ownerDocument;
+            const tmpl = doc.querySelector(`#${this.constructor.is}`);
+            if (tmpl) {
+                shadowRoot.appendChild(tmpl.content.cloneNode(true));
+            }            
         }
 
         configureProperties() {
@@ -40,49 +45,43 @@ let JK = (function () {
         }
 
         configureBindings() {
-            this._walkTree();
-        }
-
-        _walkTree() {
             var walker = document.createTreeWalker(
                 this.shadowRoot,
                 NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT,
-                function (node) {
+                node => {
                     if (node.nodeType == Node.TEXT_NODE) {
-                        let binding = node.textContent.match(/{{(.*)}}/);
-                        if (binding) {
-                            let path = binding[1];
-                            let property = path.split('.')[0];
-                            this.bindings.get(property).push({
-                                node,
-                                path: path.substring(path.indexOf('.') + 1)
-                            });
-                            return NodeFilter.FILTER_ACCEPT;
-                        } else {
-                            return NodeFilter.FILTER_SKIP;
-                        }
+                        return this._processNode(node);
                     }
 
                     if (node.nodeType == Node.ELEMENT_NODE) {
                         if (node.attributes.length) {
                             for (let attribute of node.attributes) {
-                                return isBinding(attribute.textContent) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP;
+                                return this._processNode(attribute);
                             }
                         }
                     }
                     return NodeFilter.FILTER_SKIP;
-                }.bind(this),
-                false);
-
-            function isBinding(text) {
-                var re = new RegExp();
-                re.compile("^{{(.*)}}$");
-
-                return text.match(re);
-            }
+                },
+                false
+            );
 
             while (walker.nextNode()) {
-                console.log(walker.currentNode);
+                //console.log(walker.currentNode);
+            }
+        }
+
+        _processNode(node) {
+            let binding = node.textContent.match(/{{(.*)}}/);
+            if (binding) {
+                let path = binding[1];
+                let property = path.split('.')[0];
+                this.bindings.get(property).push({
+                    node,
+                    path: path.substring(path.indexOf('.') + 1)
+                });
+                return NodeFilter.FILTER_ACCEPT;
+            } else {
+                return NodeFilter.FILTER_SKIP;
             }
         }
 
@@ -148,7 +147,7 @@ let JK = (function () {
         }
     }
 
-    class DomRepeat extends HTMLElement {
+    class DomRepeat extends JKElement {
         static get is() {
             return 'dom-repeat';
         }
@@ -163,10 +162,7 @@ let JK = (function () {
 
         constructor() {
             super();
-            let shadowRoot = this.attachShadow({
-                mode: 'open'
-            });
-            shadowRoot.innerHTML = '<template><slot><slot><template>';
+            this.shadowRoot.innerHTML = '<template><slot><slot><template>';
         }
     }
     customElements.define(DomRepeat.is, DomRepeat);
